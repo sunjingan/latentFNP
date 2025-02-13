@@ -1,0 +1,23 @@
+model:
+  params:
+    arch: vit_large
+    pretrained_model: ""
+    patch_size: [11, 10]
+    patch_stride: [10, 10]
+    in_chans: 69
+    out_chans: 69
+    kwargs:
+      z_dim: ~  # 对应Python的None
+      learnable_pos: true
+      window: true
+      window_size:
+        - [24, 24]
+        - [12, 48]
+        - [48, 12]
+      interval: 4
+      drop_path_rate: 0.0
+      round_padding: true
+      pad_attn_mask: true
+      test_pos_mode: learnable_simple_interpolate
+      lms_checkpoint_train: true
+      img_size: [721, 1440]

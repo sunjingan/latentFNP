@@ -24,7 +24,9 @@ def weighted_rmse_torch_channels(pred: torch.Tensor, target: torch.Tensor) -> to
 @torch.jit.script
 def weighted_rmse_torch(pred: torch.Tensor, target: torch.Tensor) -> torch.Tensor:
     result = weighted_rmse_torch_channels(pred, target)
+    #print(result.shape)
     return torch.mean(result, dim=0)
 
 def WRMSE(pred, gt, data_std):
+    #print(weighted_rmse_torch(pred, gt).shape,data_std.shape)
     return weighted_rmse_torch(pred, gt) * data_std

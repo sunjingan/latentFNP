@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
+from torch.cuda.amp import autocast
 from .initialization import init_param_, weights_init
 from .helpers import (
     channels_to_2nd_dim,
@@ -326,7 +327,13 @@ class SpectralConv2d_fast(nn.Module):
     def forward(self, x):
         batchsize, dtype = x.shape[0], x.dtype
         #Compute Fourier coeffcients up to factor of e^(- something constant)
-        x_ft = torch.fft.rfft2(x)
+        if torch.isnan(x).any():
+            print("before float32 出现nan值")
+        x_ft = torch.fft.rfft2(x.to(torch.float32))
+        #x_ft = torch.fft.rfft2(x)
+        if torch.isnan(x).any():
+            print("after float32 出现nan值")
+        
 
         # Multiply relevant Fourier modes
         out_ft_real = torch.zeros(batchsize, self.out_channels,  x.size(-2), x.size(-1)//2 + 1, device=x.device)
@@ -346,7 +353,14 @@ class SpectralConv2d_fast(nn.Module):
         out_ft = torch.stack([out_ft_real, out_ft_imag], dim=-1)
         out_ft = torch.view_as_complex(out_ft)
         x = torch.fft.irfft2(out_ft, s=(x.size(-2), x.size(-1)))
+        if torch.isnan(x).any():
+            print("after fft 出现nan值")
         x = x.type(dtype)
+        if torch.isnan(x).any():
+            print("before half 出现nan值")
+        x = x.half()
+        if torch.isnan(x).any():
+            print("出现nan值")
 
         return x
 
@@ -507,7 +521,9 @@ class FCNN(nn.Module):
     def apply_convs(self, X):
         for i in range(self.n_blocks):
         # for conv_block in self.conv_blocks:
-            X = self.conv_blocks[i](X) + self.fno_blocks[i](X) + X
+            with autocast(enabled=False):
+                fno = self.fno_blocks[i](X)
+            X = self.conv_blocks[i](X) + fno + X
         return X, None
 
 

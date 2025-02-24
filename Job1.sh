@@ -6,7 +6,7 @@
 #SBATCH --ntasks-per-node=8           
 #SBATCH --cpus-per-task=8              
 #SBATCH --gres=gpu:8                  
-#SBATCH --nodes=1
+#SBATCH --nodes=2
 #SBATCH --mem=64G                 # 内存需求
 #SBATCH --time=480:00:00          # 运行时间（1小时）
 
@@ -19,5 +19,5 @@ echo "SLURM_NODELIST: $SLURM_NODELIST"
 echo "SLURM_SRUN_COMM_PORT: $SLURM_SRUN_COMM_PORT"
 
 
-srun python -u train.py --world_size=8 --per_cpus=4 --batch_size=2
+srun python -u train.py --world_size=16 --per_cpus=4 --batch_size=2 --max_epoch=1000
 

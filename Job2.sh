@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=testVAE               
-#SBATCH --output=testvaeformer            
+#SBATCH --output=testvaeformer__            
 #SBATCH --partition=ai4earth          
 #SBATCH --quotatype=reserved
 #SBATCH --ntasks-per-node=1           
@@ -19,5 +19,6 @@ echo "SLURM_NODELIST: $SLURM_NODELIST"
 echo "SLURM_SRUN_COMM_PORT: $SLURM_SRUN_COMM_PORT"
 
 
-srun python test.py
+
+srun python -u test_vae.py --world_size=1 --per_cpus=4 --batch_size=4 --max_epoch=1000
 

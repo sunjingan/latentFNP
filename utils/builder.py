@@ -39,11 +39,13 @@ class ConfigBuilder(object):
         from models.Adas import Adas
         '''
         from models.vaeformer import VAE
-
+        
+        from models.latentFNP import latentFNP
+        
         if model_params is None:
             model_params = self.model_params
         type = model_params.get('type', 'FNP')
-
+        print('model_params',model_params)
         if type == 'FNP':
             model = FNP(**model_params)
         elif type == 'ConvCNP':
@@ -52,6 +54,8 @@ class ConfigBuilder(object):
             model = Adas(**model_params)
         elif type == 'VAE':
             model = VAE(**model_params)
+        elif type == 'LFNP':
+            model = latentFNP(**model_params)
         else:
             raise NotImplementedError('Invalid model type.')
         
@@ -155,6 +159,7 @@ class ConfigBuilder(object):
         if dataloader_params is None:
             dataloader_params = self.dataloader_params
         dataset = self.get_dataset(dataset_params, split)
+        print('dataset:',dataset)
         if dataset is None:
             return None
         sampler = self.get_sampler(dataset, split, drop_last=drop_last)

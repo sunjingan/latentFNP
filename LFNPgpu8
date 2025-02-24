@@ -1,0 +1,37 @@
+SLURM_STEP_NODELIST: 
+SLURM_JOB_NODELIST: SH-IDC1-10-140-24-51
+SLURM_NODELIST: SH-IDC1-10-140-24-51
+SLURM_SRUN_COMM_PORT: 
+Start
+2025-02-18 21:53:23,453 train INFO: Building config ...
+2025-02-18 21:53:23,454 train INFO: Building models ...
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+model_params {'type': 'LFNP', 'VAEparams': {'arch': 'vit_large', 'pretrained_model': '', 'patch_size': [4, 4], 'patch_stride': [4, 4], 'in_chans': 69, 'out_chans': 69, 'kwargs': {'z_dim': 69, 'learnable_pos': True, 'window': True, 'window_size': [[24, 24], [12, 48], [48, 12]], 'interval': 4, 'drop_path_rate': 0.0, 'round_padding': True, 'pad_attn_mask': True, 'test_pos_mode': 'learnable_simple_interpolate', 'lms_checkpoint_train': True, 'img_size': [128, 256]}}, 'FNPparams': {'n_channels': [16, 48, 48, 48, 48, 48], 'r_dim': 96, 'use_nfl': True, 'use_dam': True}, 'criterion': 'CNPFLoss', 'optimizer': {'type': 'AdamW', 'params': {'lr': 0.0001, 'betas': [0.9, 0.9], 'weight_decay': 0.01}}, 'lr_scheduler': {'type': 'OneCycleLR', 'params': {'max_lr': 0.0001, 'pct_start': 0.1, 'anneal_strategy': 'cos', 'div_factor': 100, 'final_div_factor': 1000}}}
+model_params: {'type': 'LFNP', 'VAEparams': {'arch': 'vit_large', 'pretrained_model': '', 'patch_size': [4, 4], 'patch_stride': [4, 4], 'in_chans': 69, 'out_chans': 69, 'kwargs': {'z_dim': 69, 'learnable_pos': True, 'window': True, 'window_size': [[24, 24], [12, 48], [48, 12]], 'interval': 4, 'drop_path_rate': 0.0, 'round_padding': True, 'pad_attn_mask': True, 'test_pos_mode': 'learnable_simple_interpolate', 'lms_checkpoint_train': True, 'img_size': [128, 256]}}, 'FNPparams': {'n_channels': [16, 48, 48, 48, 48, 48], 'r_dim': 96, 'use_nfl': True, 'use_dam': True}, 'criterion': 'CNPFLoss', 'optimizer': {'type': 'AdamW', 'params': {'lr': 0.0001, 'betas': [0.9, 0.9], 'weight_decay': 0.01}}, 'lr_scheduler': {'type': 'OneCycleLR', 'params': {'max_lr': 0.0001, 'pct_start': 0.1, 'anneal_strategy': 'cos', 'div_factor': 100, 'final_div_factor': 1000}}}
+{'arch': 'vit_large', 'pretrained_model': '', 'patch_size': (11, 10), 'patch_stride': (10, 10), 'in_chans': 69, 'out_chans': 69, 'kwargs': {'z_dim': 256, 'depth': 24, 'embed_dim': 1024, 'learnable_pos': True, 'window': True, 'window_size': [(24, 24), (12, 48), (48, 12)], 'interval': 4, 'drop_path_rate': 0.0, 'round_padding': True, 'pad_attn_mask': True, 'test_pos_mode': 'learnable_simple_interpolate', 'lms_checkpoint_train': True, 'img_size': (721, 1440)}}
+r_dim: 96
+2025-02-18 21:53:35,952 train INFO: Building forecast models ...
+Building forecast models ...
+2025-02-18 21:55:25.522925459 [W:onnxruntime:, session_state.cc:1162 VerifyEachNodeIsAssignedToAnEp] Some nodes were not assigned to the preferred execution providers which may or may not have an negative impact on performance. e.g. ORT explicitly assigns shape related ops to CPU to improve perf.
+2025-02-18 21:55:25.522981494 [W:onnxruntime:, session_state.cc:1164 VerifyEachNodeIsAssignedToAnEp] Rerunning with verbose output on a non-minimal build will show node assignments.
+2025-02-18 21:55:27,689 train INFO: Building dataloaders ...
+2025-02-18 21:55:27,690 train INFO: dataloader
+dataset: <datasets.era5_npy_f32.era5_npy_f32 object at 0x7fd4fceb50d0>
+batch_size 1
+dataset: <datasets.era5_npy_f32.era5_npy_f32 object at 0x7fd395cb1f40>
+batch_size 1
+2025-02-18 21:55:32,382 train INFO: begin training ...
+begin training ...
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+2025-02-18 22:01:56,912 train INFO: Train epoch:[1/1000], step:[100/54051], lr:[1.000000083611812e-06], loss:[1.3922368288040161]
+2025-02-18 22:08:08,750 train INFO: Train epoch:[1/1000], step:[200/54051], lr:[1.000000334447243e-06], loss:[0.8378449082374573]
+2025-02-18 22:14:20,558 train INFO: Train epoch:[1/1000], step:[300/54051], lr:[1.0000007525063173e-06], loss:[0.7661884427070618]
+srun: Job step aborted: Waiting up to 2 seconds for job step to finish.
+slurmstepd: error: *** STEP 5228035.0 ON SH-IDC1-10-140-24-51 CANCELLED AT 2025-02-18T22:14:56 ***
+srun: Easily find out why your job was killed by following the link below:
+	https://docs.phoenix.sensetime.com/FAQ/SlurmFAQ/Find-out-why-my-job-was-killed/
+slurmstepd: error: *** JOB 5228035 ON SH-IDC1-10-140-24-51 CANCELLED AT 2025-02-18T22:14:56 ***
+srun: got SIGCONT
+srun: forcing job termination

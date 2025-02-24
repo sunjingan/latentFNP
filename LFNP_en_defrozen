@@ -1,0 +1,22 @@
+SLURM_STEP_NODELIST: 
+SLURM_JOB_NODELIST: SH-IDC1-10-140-24-47
+SLURM_NODELIST: SH-IDC1-10-140-24-47
+SLURM_SRUN_COMM_PORT: 
+Start
+2025-02-24 08:59:28,328 train INFO: Building config ...
+2025-02-24 08:59:28,329 train INFO: Building models ...
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+model_params {'type': 'LFNP', 'VAEparams': {'arch': 'vit_large', 'pretrained_model': '', 'patch_size': [4, 4], 'patch_stride': [4, 4], 'in_chans': 69, 'out_chans': 69, 'kwargs': {'z_dim': 69, 'learnable_pos': True, 'window': True, 'window_size': [[24, 24], [12, 48], [48, 12]], 'interval': 4, 'drop_path_rate': 0.0, 'round_padding': True, 'pad_attn_mask': True, 'test_pos_mode': 'learnable_simple_interpolate', 'lms_checkpoint_train': True, 'img_size': [128, 256]}}, 'FNPparams': {'n_channels': [16, 48, 48, 48, 48, 48], 'r_dim': 128, 'use_nfl': True, 'use_dam': True}, 'criterion': 'CNPFLoss', 'optimizer': {'type': 'AdamW', 'params': {'lr': 0.0001, 'betas': [0.9, 0.9], 'weight_decay': 0.01}}, 'lr_scheduler': {'type': 'OneCycleLR', 'params': {'max_lr': 0.0001, 'pct_start': 0.1, 'anneal_strategy': 'cos', 'div_factor': 100, 'final_div_factor': 1000}}}
+model_params: {'type': 'LFNP', 'VAEparams': {'arch': 'vit_large', 'pretrained_model': '', 'patch_size': [4, 4], 'patch_stride': [4, 4], 'in_chans': 69, 'out_chans': 69, 'kwargs': {'z_dim': 69, 'learnable_pos': True, 'window': True, 'window_size': [[24, 24], [12, 48], [48, 12]], 'interval': 4, 'drop_path_rate': 0.0, 'round_padding': True, 'pad_attn_mask': True, 'test_pos_mode': 'learnable_simple_interpolate', 'lms_checkpoint_train': True, 'img_size': [128, 256]}}, 'FNPparams': {'n_channels': [16, 48, 48, 48, 48, 48], 'r_dim': 128, 'use_nfl': True, 'use_dam': True}, 'criterion': 'CNPFLoss', 'optimizer': {'type': 'AdamW', 'params': {'lr': 0.0001, 'betas': [0.9, 0.9], 'weight_decay': 0.01}}, 'lr_scheduler': {'type': 'OneCycleLR', 'params': {'max_lr': 0.0001, 'pct_start': 0.1, 'anneal_strategy': 'cos', 'div_factor': 100, 'final_div_factor': 1000}}}
+{'arch': 'vit_large', 'pretrained_model': '', 'patch_size': (11, 10), 'patch_stride': (10, 10), 'in_chans': 69, 'out_chans': 69, 'kwargs': {'z_dim': 256, 'depth': 24, 'embed_dim': 1024, 'learnable_pos': True, 'window': True, 'window_size': [(24, 24), (12, 48), (48, 12)], 'interval': 4, 'drop_path_rate': 0.0, 'round_padding': True, 'pad_attn_mask': True, 'test_pos_mode': 'learnable_simple_interpolate', 'lms_checkpoint_train': True, 'img_size': (721, 1440)}}
+r_dim: 128
+2025-02-24 08:59:44,321 train INFO: Building forecast models ...
+Building forecast models ...
+srun: got SIGCONT
+slurmstepd: error: *** JOB 5240220 ON SH-IDC1-10-140-24-47 CANCELLED AT 2025-02-24T08:59:57 ***
+srun: Job step aborted: Waiting up to 2 seconds for job step to finish.
+slurmstepd: error: *** STEP 5240220.0 ON SH-IDC1-10-140-24-47 CANCELLED AT 2025-02-24T08:59:57 ***
+srun: Easily find out why your job was killed by following the link below:
+	https://docs.phoenix.sensetime.com/FAQ/SlurmFAQ/Find-out-why-my-job-was-killed/
+srun: forcing job termination

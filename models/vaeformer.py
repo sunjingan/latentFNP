@@ -22,6 +22,7 @@ from utils.builder import get_optimizer, get_lr_scheduler
 from torch.cuda.amp import autocast, GradScaler
 from torch.utils.checkpoint import checkpoint
 
+import pandas as pd
 class VAEformer(nn.Module):
     """
     Args:
@@ -265,8 +266,8 @@ class VAE(object):
         self.optimizer = get_optimizer(self.kernel, self.optimizer_params)
         self.scheduler = get_lr_scheduler(self.optimizer, self.scheduler_params, total_steps=train_step*args.max_epoch)
         
-        
-        for epoch in range(10000):
+        #args.max_epoch = 1000
+        for epoch in range(args.max_epoch):
             begin_time = time.time()
             self.kernel.train()
             
@@ -301,6 +302,8 @@ class VAE(object):
                 self.scaler.update()
                 self.scheduler.step()
                 
+                
+                
                 if ((step + 1) % 100 == 0) | (step+1 == train_step):
                     logger.info(f'Train epoch:[{epoch+1}/{args.max_epoch}], step:[{step+1}/{train_step}], lr:[{self.scheduler.get_last_lr()[0]}], loss:[{loss.item()}]')
 
@@ -326,18 +329,20 @@ class VAE(object):
                     #print(mseloss.shape,klloss.shape)
                     loss = mseloss + klloss.mean()
                 
-                    total_loss += loss.item
+                    total_loss += loss.item()
+                    
+                    
 
                     if ((step + 1) % 100 == 0) | (step+1 == valid_step):
                         logger.info(f'Valid epoch:[{epoch+1}/{args.max_epoch}], step:[{step+1}/{valid_step}], loss:[{loss}]')
         
             if (total_loss/valid_step) < self.best_loss:
                 if utils.get_world_size() > 1 and utils.get_rank() == 0:
-                    torch.save(self.kernel.module.ga.state_dict(), f'{args.rundir}/best_encoder.pth')
-                    torch.save(self.kernel.module.gs.state_dict(), f'{args.rundir}/best_decoder.pth')
+                    torch.save(self.kernel.module.g_a.state_dict(), f'{args.rundir}/best_encoder_32.pth')
+                    torch.save(self.kernel.module.g_s.state_dict(), f'{args.rundir}/best_decoder_32.pth')
                 elif utils.get_world_size() == 1:
-                    torch.save(self.kernel.ga.state_dict(), f'{args.rundir}/best_encoder.pth')
-                    torch.save(self.kernel.gs.state_dict(), f'{args.rundir}/best_decoder.pth')
+                    torch.save(self.kernel.g_a.state_dict(), f'{args.rundir}/best_encoder_32.pth')
+                    torch.save(self.kernel.g_s.state_dict(), f'{args.rundir}/best_decoder_32.pth')
                 logger.info(f'New best model appears in epoch {epoch+1}.')
                 self.best_loss = total_loss/valid_step
             logger.info(f'Epoch {epoch+1} average loss:[{total_loss/valid_step}], time:[{time.time()-begin_time}]')
@@ -357,24 +362,86 @@ class VAE(object):
 
             for step, batch_data in enumerate(test_data_loader):
 
-                input_list, y_target = self.process_data(batch_data[0], args)
-                y_pred = self.kernel(input_list)
+                x = batch_data[0][0].to(self.device)
+                #x = F.pad(x, (48, 48, 24, 23), "constant", 0).to(self.device)
+                x_hat, moments = self.kernel(x)
+                mean, logvar = torch.chunk(moments, 2, dim=1)
+                logvar = torch.clamp(logvar, -30.0, 20.0)
+                std = torch.exp(0.5 * logvar)
+                var = torch.exp(logvar)
+
                 if isinstance(self.criterion, torch.nn.Module):
                     self.criterion.eval()
-                loss = self.criterion(y_pred, y_target).item()
+                #loss = self.criterion(y_pred, y_target).item()
                 
-                y_pred = rearrange(y_pred[0].mean[0], 'b h w c -> b c h w')
-                y_target = rearrange(y_target, 'b h w c -> b c h w')
-                mae = self.criterion_mae(y_pred, y_target).item()
-                mse = self.criterion_mse(y_pred, y_target).item()
-                rmse = WRMSE(y_pred, y_target, self.data_std)
+                mseloss = 0.5*self.criterion_mse(x_hat, x) 
+                klloss = 0.5 * torch.mean(torch.pow(mean, 2) + var - 1.0 - logvar, dim=[1, 2, 3])
+                #print(mseloss.shape,klloss.shape)
+                loss = mseloss + klloss.mean()
+                
+                total_loss += loss.item()
+                #print(x_hat.shape)
+                #print(x.shape)
+                x_pred = x_hat #rearrange(x_hat, 'b h w c -> b c h w')
+                x_target = x #rearrange(x, 'b h w c -> b c h w')
+                mae = self.criterion_mae(x_pred, x_target).item()
+                mse = self.criterion_mse(x_pred, x_target).item()
+                rmse = WRMSE(x_pred, x_target, self.data_std)
 
-                total_loss += loss
                 total_mae += mae
                 total_mse += mse
                 total_rmse += rmse
-                if ((step + 1) % 1 == 0) | (step+1 == test_step):
-                    logger.info(f'Valid step:[{step+1}/{test_step}], loss:[{loss}], MAE:[{mae}], MSE:[{mse}]')
+                if ((step + 1) % 20 == 0) | (step+1 == test_step):
+                    print(x_pred.shape,x_target.shape,x.shape)
+                    self.save_sample(step,x_pred,x_target)
+                    
+                    logger.info(f'Valid step:[{step+1}/{test_step}], loss:[{loss}], MAE:[{mae}], MSE:[{mse}], RMSE:[{rmse}]')
+                    break
 
         logger.info(f'Average loss:[{total_loss/test_step}], MAE:[{total_mae/test_step}], MSE:[{total_mse/test_step}]')
         logger.info(f'Average RMSE:[{total_rmse/test_step}]')
+    def save_sample(self,step,x_pred,x_target):
+        B = x_pred.shape[0]
+        for i in range(B):
+            data = x_pred[i].cpu().numpy()
+            print(data.shape)
+            stacked_data = data.reshape(-1, data.shape[2])
+            pd.DataFrame(stacked_data).to_csv('recons_step{}_{}.csv'.format(step,i),index=False, header=False)
+
+            data = x_target[i].cpu().numpy()
+            stacked_data = data.reshape(-1, data.shape[2])
+            pd.DataFrame(stacked_data).to_csv('truth_step{}_{}.csv'.format(step,i), index=False, header=False)
+
+    def plot_sample(self,step,gt,recons):
+        lat = np.linspace(-90, 90, 721)  # 纬度从 -90° 到 90°
+        lon = np.linspace(-180, 180, 1440)  # 经度从 -180° 到 180°
+        lon, lat = np.meshgrid(lon, lat)
+
+        # 创建地图
+        fig = plt.figure(figsize=(12, 6))
+        ax = plt.axes(projection=ccrs.PlateCarree())  # 使用 PlateCarree 投影（圆柱投影）
+
+        # 绘制热力图
+        heatmap = ax.pcolormesh(lon, lat, gt, cmap='hot', transform=ccrs.PlateCarree())
+
+        # 添加国家分界线
+        ax.add_feature(cfeature.BORDERS, linestyle=':', linewidth=0.5)
+        ax.add_feature(cfeature.COASTLINE, linewidth=0.5)
+
+        # 添加颜色条
+        cbar = plt.colorbar(heatmap, orientation='horizontal', pad=0.05, shrink=0.8)
+        cbar.set_label('Variable Value')
+
+        # 设置标题
+        plt.title('Global Heatmap with Latitude and Longitude')
+
+
+        ax.set_global()  # 确保地图显示完整的全球范围
+        ax.gridlines(draw_labels=True, linewidth=0.5, color='gray', alpha=0.5, linestyle='--')  # 添加网格线
+
+        # 调整地图的边界
+        ax.set_extent([-180, 180, -90, 90], crs=ccrs.PlateCarree())  # 设置地图范围为全球
+
+        # 保存图像
+        plt.savefig('global_heatmap.png', dpi=300, bbox_inches='tight')
+

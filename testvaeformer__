@@ -1,0 +1,59 @@
+SLURM_STEP_NODELIST: 
+SLURM_JOB_NODELIST: SH-IDC1-10-140-24-105
+SLURM_NODELIST: SH-IDC1-10-140-24-105
+SLURM_SRUN_COMM_PORT: 
+Start
+2025-02-19 17:14:24,465 train INFO: Building config ...
+2025-02-19 17:14:24,465 train INFO: Building models ...
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+model_params {'type': 'VAE', 'VAEparams': {'arch': 'vit_large', 'pretrained_model': '', 'patch_size': [4, 4], 'patch_stride': [4, 4], 'in_chans': 69, 'out_chans': 69, 'kwargs': {'z_dim': 69, 'learnable_pos': True, 'window': True, 'window_size': [[24, 24], [12, 48], [48, 12]], 'interval': 4, 'drop_path_rate': 0.0, 'round_padding': True, 'pad_attn_mask': True, 'test_pos_mode': 'learnable_simple_interpolate', 'lms_checkpoint_train': True, 'img_size': [128, 256]}}, 'FNPparams': {'n_channels': [16, 48, 48, 48, 48, 48], 'r_dim': 128, 'use_nfl': True, 'use_dam': True}, 'criterion': 'CNPFLoss', 'optimizer': {'type': 'AdamW', 'params': {'lr': 0.0001, 'betas': [0.9, 0.9], 'weight_decay': 0.01}}, 'lr_scheduler': {'type': 'OneCycleLR', 'params': {'max_lr': 0.0001, 'pct_start': 0.1, 'anneal_strategy': 'cos', 'div_factor': 100, 'final_div_factor': 1000}}}
+{'arch': 'vit_large', 'pretrained_model': '', 'patch_size': (11, 10), 'patch_stride': (10, 10), 'in_chans': 69, 'out_chans': 69, 'kwargs': {'z_dim': 256, 'depth': 24, 'embed_dim': 1024, 'learnable_pos': True, 'window': True, 'window_size': [(24, 24), (12, 48), (48, 12)], 'interval': 4, 'drop_path_rate': 0.0, 'round_padding': True, 'pad_attn_mask': True, 'test_pos_mode': 'learnable_simple_interpolate', 'lms_checkpoint_train': True, 'img_size': (721, 1440)}}
+2025-02-19 17:14:35,081 train INFO: Building dataloaders ...
+2025-02-19 17:14:35,081 train INFO: dataloader
+dataset: <datasets.era5_npy_f32.era5_npy_f32 object at 0x7fa643b11850>
+batch_size 4
+364
+2025-02-19 17:14:38,011 train INFO: begin testing ...
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+torch.Size([4, 69, 721, 1440]) torch.Size([4, 69, 721, 1440]) torch.Size([4, 69, 721, 1440])
+(69, 721, 1440)
+(69, 721, 1440)
+(69, 721, 1440)
+(69, 721, 1440)
+2025-02-19 17:23:55,580 train INFO: Valid step:[20/364], loss:[0.0018659377237781882], MAE:[0.03610122203826904], MSE:[0.003728350391611457], RMSE:[tensor([4.6700e-01, 4.2365e-01, 9.6872e-01, 3.5296e+01, 7.4666e+01, 5.8859e+01,
+        4.2217e+01, 3.7075e+01, 3.5448e+01, 3.4522e+01, 3.1106e+01, 2.7401e+01,
+        2.4730e+01, 2.3589e+01, 2.1579e+01, 2.3235e+01, 2.7844e+01, 5.6961e-09,
+        4.0006e-08, 3.5140e-07, 2.4509e-06, 8.3907e-06, 1.8656e-05, 5.6420e-05,
+        1.1994e-04, 1.9004e-04, 2.7386e-04, 4.2921e-04, 4.5900e-04, 4.0295e-04,
+        6.0302e-01, 7.4254e-01, 9.7468e-01, 1.1197e+00, 1.1640e+00, 1.1105e+00,
+        9.8762e-01, 8.8423e-01, 8.0195e-01, 7.5028e-01, 7.3732e-01, 6.8635e-01,
+        5.1560e-01, 5.0150e-01, 5.7868e-01, 7.3569e-01, 8.3878e-01, 9.2622e-01,
+        9.1632e-01, 8.1694e-01, 7.0895e-01, 6.3732e-01, 5.9646e-01, 6.0932e-01,
+        5.9835e-01, 4.6545e-01, 4.2606e-01, 4.9727e-01, 3.8863e-01, 2.8472e-01,
+        3.0934e-01, 3.5640e-01, 4.2760e-01, 4.5204e-01, 4.6640e-01, 4.9148e-01,
+        6.3049e-01, 6.1615e-01, 7.1767e-01], device='cuda:0',
+       dtype=torch.float64)]
+2025-02-19 17:23:55,580 train INFO: Average loss:[0.00010555978080227071], MAE:[0.002000516127017173], MSE:[0.00021092436637135817]
+2025-02-19 17:23:55,582 train INFO: Average RMSE:[tensor([2.5762e-02, 2.3795e-02, 5.2819e-02, 2.0022e+00, 4.1240e+00, 3.1140e+00,
+        2.3622e+00, 2.1040e+00, 1.9863e+00, 1.9482e+00, 1.7561e+00, 1.5527e+00,
+        1.4033e+00, 1.3346e+00, 1.2118e+00, 1.3014e+00, 1.5748e+00, 3.0420e-10,
+        2.2981e-09, 1.9108e-08, 1.3331e-07, 4.5946e-07, 1.0393e-06, 3.1517e-06,
+        6.5574e-06, 1.0506e-05, 1.5343e-05, 2.4218e-05, 2.5882e-05, 2.2276e-05,
+        3.3574e-02, 4.0649e-02, 5.3038e-02, 6.1053e-02, 6.4955e-02, 6.2767e-02,
+        5.5691e-02, 4.9924e-02, 4.5351e-02, 4.2583e-02, 4.1436e-02, 3.8310e-02,
+        2.8551e-02, 2.8336e-02, 3.1723e-02, 4.0329e-02, 4.6855e-02, 5.2176e-02,
+        5.2470e-02, 4.6993e-02, 4.0841e-02, 3.6666e-02, 3.4306e-02, 3.4928e-02,
+        3.4022e-02, 2.6123e-02, 2.3843e-02, 2.7351e-02, 2.1223e-02, 1.6046e-02,
+        1.7525e-02, 2.0272e-02, 2.4304e-02, 2.5440e-02, 2.6801e-02, 2.8675e-02,
+        3.5570e-02, 3.5351e-02, 3.9456e-02], device='cuda:0',
+       dtype=torch.float64)]
+2025-02-19 17:23:55,582 train INFO: testing end ...
+srun: got SIGCONT
+slurmstepd: error: *** JOB 5229573 ON SH-IDC1-10-140-24-105 CANCELLED AT 2025-02-19T17:31:15 ***
+srun: Job step aborted: Waiting up to 2 seconds for job step to finish.
+slurmstepd: error: *** STEP 5229573.0 ON SH-IDC1-10-140-24-105 CANCELLED AT 2025-02-19T17:31:15 ***
+srun: Easily find out why your job was killed by following the link below:
+	https://docs.phoenix.sensetime.com/FAQ/SlurmFAQ/Find-out-why-my-job-was-killed/
+srun: forcing job termination

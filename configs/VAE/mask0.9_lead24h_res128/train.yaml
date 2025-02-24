@@ -1,18 +1,18 @@
 seed: 0
 cuda: 0
-world_size: 4
+world_size: 1
 per_cpus: 4
-max_epoch: 20
-batch_size: 2
+max_epoch: 1000
+batch_size: 4
 lead_time: 24
 ratio: 0.9
 resolution: 128
-init_method: tcp://10.140.24.51:19111
+init_method: tcp://127.0.0.1:19111
 rundir: ./configs/VAE/mask0.9_lead24h_res128
 rank: 0
 local_rank: 0
-distributed: true
-dist_backend: nccl
+distributed: false
+gpu: 0
 cfg: ./configs/VAE/training_options.yaml
 cfg_params:
   vnames: &id001
@@ -58,6 +58,13 @@ cfg_params:
       sample_stride: 1
       vnames: *id001
       length: 6
+    test:
+      type: era5_npy_f32
+      data_dir: s3://era5_np_float32
+      train_stride: 6
+      file_stride: 6
+      sample_stride: 1
+      vnames: *id001
   dataloader:
     num_workers: 4
     pin_memory: true
@@ -65,7 +72,7 @@ cfg_params:
     persistent_workers: true
   model:
     type: VAE
-    params:
+    VAEparams:
       arch: vit_large
       pretrained_model: ''
       patch_size:
@@ -96,6 +103,17 @@ cfg_params:
         img_size:
         - 128
         - 256
+    FNPparams:
+      n_channels:
+      - 16
+      - 48
+      - 48
+      - 48
+      - 48
+      - 48
+      r_dim: 128
+      use_nfl: true
+      use_dam: true
     criterion: CNPFLoss
     optimizer:
       type: AdamW

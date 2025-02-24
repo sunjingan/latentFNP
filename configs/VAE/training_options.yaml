@@ -39,14 +39,21 @@ dataset:
     file_stride: 6
     sample_stride: 1
     vnames: *id001
+  test:
+    type: era5_npy_f32
+    data_dir: 's3://era5_np_float32'
+    train_stride: 6
+    file_stride: 6
+    sample_stride: 1
+    vnames: *id001
 dataloader:
   num_workers: 32
   pin_memory: true
   prefetch_factor: 2
   persistent_workers: true
 model:
-  type: VAE
-  params:
+  type: LFNP
+  VAEparams:
     arch: vit_large
     pretrained_model: ""
     patch_size: [4, 4]
@@ -68,6 +75,17 @@ model:
       test_pos_mode: learnable_simple_interpolate
       lms_checkpoint_train: true
       img_size: [128, 256]
+  FNPparams:
+    n_channels:
+      - 16
+      - 48
+      - 48
+      - 48
+      - 48
+      - 48
+    r_dim: 128  # 128 for 128×256 & 256×512 resolution, 64 for 721×1440 resolution
+    use_nfl: true
+    use_dam: true
   criterion: CNPFLoss
   optimizer:
     type: AdamW

@@ -1,0 +1,567 @@
+SLURM_STEP_NODELIST: 
+SLURM_JOB_NODELIST: SH-IDC1-10-140-24-86
+SLURM_NODELIST: SH-IDC1-10-140-24-86
+SLURM_SRUN_COMM_PORT: 
+Start
+SH-IDC1-10-140-24-86
+iplist: SH-IDC1-10-140-24-86
+SH-IDC1-10-140-24-86
+Start
+SH-IDC1-10-140-24-86
+iplist: SH-IDC1-10-140-24-86
+SH-IDC1-10-140-24-86
+Start
+SH-IDC1-10-140-24-86
+iplist: SH-IDC1-10-140-24-86
+SH-IDC1-10-140-24-86
+Start
+SH-IDC1-10-140-24-86
+iplist: SH-IDC1-10-140-24-86
+SH-IDC1-10-140-24-86
+Start
+Start
+SH-IDC1-10-140-24-86
+SH-IDC1-10-140-24-86
+iplist: SH-IDC1-10-140-24-86
+SH-IDC1-10-140-24-86
+Start
+iplist: SH-IDC1-10-140-24-86
+SH-IDC1-10-140-24-86
+Start
+SH-IDC1-10-140-24-86
+iplist: SH-IDC1-10-140-24-86
+SH-IDC1-10-140-24-86
+iplist: SH-IDC1-10-140-24-86
+SH-IDC1-10-140-24-86
+SH-IDC1-10-140-24-86
+| distributed init (rank 3, local_rank 3): tcp://10.140.24.86:19111
+| distributed init (rank 6, local_rank 6): tcp://10.140.24.86:19111
+| distributed init (rank 7, local_rank 7): tcp://10.140.24.86:19111
+| distributed init (rank 0, local_rank 0): tcp://10.140.24.86:19111
+| distributed init (rank 4, local_rank 4): tcp://10.140.24.86:19111
+| distributed init (rank 5, local_rank 5): tcp://10.140.24.86:19111
+| distributed init (rank 1, local_rank 1): tcp://10.140.24.86:19111
+| distributed init (rank 2, local_rank 2): tcp://10.140.24.86:19111
+2025-02-22 01:03:15,917 train INFO: Building config ...
+2025-02-22 01:03:15,918 train INFO: Building models ...
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+model_params {'type': 'LFNP', 'VAEparams': {'arch': 'vit_large', 'pretrained_model': '', 'patch_size': [4, 4], 'patch_stride': [4, 4], 'in_chans': 69, 'out_chans': 69, 'kwargs': {'z_dim': 69, 'learnable_pos': True, 'window': True, 'window_size': [[24, 24], [12, 48], [48, 12]], 'interval': 4, 'drop_path_rate': 0.0, 'round_padding': True, 'pad_attn_mask': True, 'test_pos_mode': 'learnable_simple_interpolate', 'lms_checkpoint_train': True, 'img_size': [128, 256]}}, 'FNPparams': {'n_channels': [16, 48, 48, 48, 48, 48], 'r_dim': 128, 'use_nfl': True, 'use_dam': True}, 'criterion': 'CNPFLoss', 'optimizer': {'type': 'AdamW', 'params': {'lr': 0.0001, 'betas': [0.9, 0.9], 'weight_decay': 0.01}}, 'lr_scheduler': {'type': 'OneCycleLR', 'params': {'max_lr': 0.0001, 'pct_start': 0.1, 'anneal_strategy': 'cos', 'div_factor': 100, 'final_div_factor': 1000}}}
+model_params: {'type': 'LFNP', 'VAEparams': {'arch': 'vit_large', 'pretrained_model': '', 'patch_size': [4, 4], 'patch_stride': [4, 4], 'in_chans': 69, 'out_chans': 69, 'kwargs': {'z_dim': 69, 'learnable_pos': True, 'window': True, 'window_size': [[24, 24], [12, 48], [48, 12]], 'interval': 4, 'drop_path_rate': 0.0, 'round_padding': True, 'pad_attn_mask': True, 'test_pos_mode': 'learnable_simple_interpolate', 'lms_checkpoint_train': True, 'img_size': [128, 256]}}, 'FNPparams': {'n_channels': [16, 48, 48, 48, 48, 48], 'r_dim': 128, 'use_nfl': True, 'use_dam': True}, 'criterion': 'CNPFLoss', 'optimizer': {'type': 'AdamW', 'params': {'lr': 0.0001, 'betas': [0.9, 0.9], 'weight_decay': 0.01}}, 'lr_scheduler': {'type': 'OneCycleLR', 'params': {'max_lr': 0.0001, 'pct_start': 0.1, 'anneal_strategy': 'cos', 'div_factor': 100, 'final_div_factor': 1000}}}
+{'arch': 'vit_large', 'pretrained_model': '', 'patch_size': (11, 10), 'patch_stride': (10, 10), 'in_chans': 69, 'out_chans': 69, 'kwargs': {'z_dim': 256, 'depth': 24, 'embed_dim': 1024, 'learnable_pos': True, 'window': True, 'window_size': [(24, 24), (12, 48), (48, 12)], 'interval': 4, 'drop_path_rate': 0.0, 'round_padding': True, 'pad_attn_mask': True, 'test_pos_mode': 'learnable_simple_interpolate', 'lms_checkpoint_train': True, 'img_size': (721, 1440)}}
+r_dim: 128
+2025-02-22 01:03:57,683 train INFO: Building forecast models ...
+Building forecast models ...
+2025-02-22 01:05:29.934043015 [W:onnxruntime:, session_state.cc:1162 VerifyEachNodeIsAssignedToAnEp] Some nodes were not assigned to the preferred execution providers which may or may not have an negative impact on performance. e.g. ORT explicitly assigns shape related ops to CPU to improve perf.
+2025-02-22 01:05:29.934105243 [W:onnxruntime:, session_state.cc:1164 VerifyEachNodeIsAssignedToAnEp] Rerunning with verbose output on a non-minimal build will show node assignments.
+2025-02-22 01:05:31.418932182 [W:onnxruntime:, session_state.cc:1162 VerifyEachNodeIsAssignedToAnEp] Some nodes were not assigned to the preferred execution providers which may or may not have an negative impact on performance. e.g. ORT explicitly assigns shape related ops to CPU to improve perf.
+2025-02-22 01:05:31.418990211 [W:onnxruntime:, session_state.cc:1164 VerifyEachNodeIsAssignedToAnEp] Rerunning with verbose output on a non-minimal build will show node assignments.
+2025-02-22 01:05:38.513248374 [W:onnxruntime:, session_state.cc:1162 VerifyEachNodeIsAssignedToAnEp] Some nodes were not assigned to the preferred execution providers which may or may not have an negative impact on performance. e.g. ORT explicitly assigns shape related ops to CPU to improve perf.
+2025-02-22 01:05:38.513306253 [W:onnxruntime:, session_state.cc:1164 VerifyEachNodeIsAssignedToAnEp] Rerunning with verbose output on a non-minimal build will show node assignments.
+2025-02-22 01:05:39.570037911 [W:onnxruntime:, session_state.cc:1162 VerifyEachNodeIsAssignedToAnEp] Some nodes were not assigned to the preferred execution providers which may or may not have an negative impact on performance. e.g. ORT explicitly assigns shape related ops to CPU to improve perf.
+2025-02-22 01:05:39.570094618 [W:onnxruntime:, session_state.cc:1164 VerifyEachNodeIsAssignedToAnEp] Rerunning with verbose output on a non-minimal build will show node assignments.
+2025-02-22 01:05:40.879574155 [W:onnxruntime:, session_state.cc:1162 VerifyEachNodeIsAssignedToAnEp] Some nodes were not assigned to the preferred execution providers which may or may not have an negative impact on performance. e.g. ORT explicitly assigns shape related ops to CPU to improve perf.
+2025-02-22 01:05:40.879628327 [W:onnxruntime:, session_state.cc:1164 VerifyEachNodeIsAssignedToAnEp] Rerunning with verbose output on a non-minimal build will show node assignments.
+2025-02-22 01:05:45.720654317 [W:onnxruntime:, session_state.cc:1162 VerifyEachNodeIsAssignedToAnEp] Some nodes were not assigned to the preferred execution providers which may or may not have an negative impact on performance. e.g. ORT explicitly assigns shape related ops to CPU to improve perf.
+2025-02-22 01:05:45.720713268 [W:onnxruntime:, session_state.cc:1164 VerifyEachNodeIsAssignedToAnEp] Rerunning with verbose output on a non-minimal build will show node assignments.
+2025-02-22 01:05:55.535390051 [W:onnxruntime:, session_state.cc:1162 VerifyEachNodeIsAssignedToAnEp] Some nodes were not assigned to the preferred execution providers which may or may not have an negative impact on performance. e.g. ORT explicitly assigns shape related ops to CPU to improve perf.
+2025-02-22 01:05:55.535449674 [W:onnxruntime:, session_state.cc:1164 VerifyEachNodeIsAssignedToAnEp] Rerunning with verbose output on a non-minimal build will show node assignments.
+2025-02-22 01:06:02.086715664 [W:onnxruntime:, session_state.cc:1162 VerifyEachNodeIsAssignedToAnEp] Some nodes were not assigned to the preferred execution providers which may or may not have an negative impact on performance. e.g. ORT explicitly assigns shape related ops to CPU to improve perf.
+2025-02-22 01:06:02.086773021 [W:onnxruntime:, session_state.cc:1164 VerifyEachNodeIsAssignedToAnEp] Rerunning with verbose output on a non-minimal build will show node assignments.
+2025-02-22 01:06:05,051 train INFO: Building dataloaders ...
+2025-02-22 01:06:05,051 train INFO: dataloader
+dataset: <datasets.era5_npy_f32.era5_npy_f32 object at 0x7f92cd16fbb0>
+batch_size 1
+dataset: <datasets.era5_npy_f32.era5_npy_f32 object at 0x7f92ccc71250>
+batch_size 1
+2025-02-22 01:06:15,552 train INFO: begin training ...
+begin training ...
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+2025-02-22 01:15:34,649 train INFO: Train epoch:[1/1000], step:[100/6756], lr:[1.0000053517638833e-06], loss:[2.762723207473755]
+2025-02-22 01:24:45,026 train INFO: Train epoch:[1/1000], step:[200/6756], lr:[1.0000214070543897e-06], loss:[2.762726306915283]
+2025-02-22 01:34:02,252 train INFO: Train epoch:[1/1000], step:[300/6756], lr:[1.0000481658680333e-06], loss:[2.896733522415161]
+2025-02-22 01:43:22,653 train INFO: Train epoch:[1/1000], step:[400/6756], lr:[1.0000856281990544e-06], loss:[2.7801830768585205]
+2025-02-22 01:52:49,209 train INFO: Train epoch:[1/1000], step:[500/6756], lr:[1.0001337940393213e-06], loss:[3.0340559482574463]
+2025-02-22 02:02:10,142 train INFO: Train epoch:[1/1000], step:[600/6756], lr:[1.0001926633784259e-06], loss:[2.954500436782837]
+2025-02-22 02:11:26,001 train INFO: Train epoch:[1/1000], step:[700/6756], lr:[1.0002622362036557e-06], loss:[3.303823947906494]
+2025-02-22 02:20:43,913 train INFO: Train epoch:[1/1000], step:[800/6756], lr:[1.000342512499954e-06], loss:[3.185568332672119]
+2025-02-22 02:29:58,419 train INFO: Train epoch:[1/1000], step:[900/6756], lr:[1.0004334922499735e-06], loss:[2.817770481109619]
+2025-02-22 02:39:14,412 train INFO: Train epoch:[1/1000], step:[1000/6756], lr:[1.0005351754340224e-06], loss:[3.0000123977661133]
+2025-02-22 02:48:32,518 train INFO: Train epoch:[1/1000], step:[1100/6756], lr:[1.000647562030132e-06], loss:[2.7955644130706787]
+2025-02-22 02:57:47,887 train INFO: Train epoch:[1/1000], step:[1200/6756], lr:[1.0007706520139757e-06], loss:[3.151747226715088]
+2025-02-22 03:07:05,762 train INFO: Train epoch:[1/1000], step:[1300/6756], lr:[1.0009044453589632e-06], loss:[3.289425849914551]
+2025-02-22 03:16:20,381 train INFO: Train epoch:[1/1000], step:[1400/6756], lr:[1.0010489420361464e-06], loss:[3.4403862953186035]
+2025-02-22 03:25:38,965 train INFO: Train epoch:[1/1000], step:[1500/6756], lr:[1.0012041420143003e-06], loss:[2.8152711391448975]
+2025-02-22 03:34:57,059 train INFO: Train epoch:[1/1000], step:[1600/6756], lr:[1.0013700452598552e-06], loss:[2.9680798053741455]
+2025-02-22 03:44:10,703 train INFO: Train epoch:[1/1000], step:[1700/6756], lr:[1.0015466517369242e-06], loss:[2.7325704097747803]
+2025-02-22 03:53:27,405 train INFO: Train epoch:[1/1000], step:[1800/6756], lr:[1.0017339614073432e-06], loss:[3.074124574661255]
+2025-02-22 04:02:41,453 train INFO: Train epoch:[1/1000], step:[1900/6756], lr:[1.0019319742305901e-06], loss:[3.3554656505584717]
+2025-02-22 04:12:04,119 train INFO: Train epoch:[1/1000], step:[2000/6756], lr:[1.0021406901638392e-06], loss:[3.134697675704956]
+2025-02-22 04:21:45,503 train INFO: Train epoch:[1/1000], step:[2100/6756], lr:[1.002360109162001e-06], loss:[2.8432505130767822]
+2025-02-22 04:31:02,568 train INFO: Train epoch:[1/1000], step:[2200/6756], lr:[1.0025902311775874e-06], loss:[3.038966417312622]
+2025-02-22 04:40:24,200 train INFO: Train epoch:[1/1000], step:[2300/6756], lr:[1.0028310561608744e-06], loss:[3.1223888397216797]
+2025-02-22 04:49:38,232 train INFO: Train epoch:[1/1000], step:[2400/6756], lr:[1.0030825840597524e-06], loss:[3.2555155754089355]
+2025-02-22 04:58:51,609 train INFO: Train epoch:[1/1000], step:[2500/6756], lr:[1.0033448148198622e-06], loss:[2.914612293243408]
+2025-02-22 05:08:09,513 train INFO: Train epoch:[1/1000], step:[2600/6756], lr:[1.003617748384473e-06], loss:[3.0359818935394287]
+2025-02-22 05:17:25,752 train INFO: Train epoch:[1/1000], step:[2700/6756], lr:[1.0039013846945905e-06], loss:[3.225144147872925]
+2025-02-22 05:26:39,231 train INFO: Train epoch:[1/1000], step:[2800/6756], lr:[1.0041957236888761e-06], loss:[2.8103246688842773]
+2025-02-22 05:35:55,284 train INFO: Train epoch:[1/1000], step:[2900/6756], lr:[1.0045007653036871e-06], loss:[3.2087478637695312]
+2025-02-22 05:45:18,483 train INFO: Train epoch:[1/1000], step:[3000/6756], lr:[1.0048165094730499e-06], loss:[2.775313138961792]
+2025-02-22 05:54:40,242 train INFO: Train epoch:[1/1000], step:[3100/6756], lr:[1.0051429561287137e-06], loss:[2.6631665229797363]
+2025-02-22 06:03:54,707 train INFO: Train epoch:[1/1000], step:[3200/6756], lr:[1.0054801052000566e-06], loss:[3.019305944442749]
+2025-02-22 06:13:10,857 train INFO: Train epoch:[1/1000], step:[3300/6756], lr:[1.0058279566142064e-06], loss:[2.789578437805176]
+2025-02-22 06:22:30,826 train INFO: Train epoch:[1/1000], step:[3400/6756], lr:[1.0061865102959332e-06], loss:[2.896148681640625]
+2025-02-22 06:31:52,482 train INFO: Train epoch:[1/1000], step:[3500/6756], lr:[1.0065557661677029e-06], loss:[2.9106693267822266]
+2025-02-22 06:41:06,653 train INFO: Train epoch:[1/1000], step:[3600/6756], lr:[1.0069357241496775e-06], loss:[2.691790819168091]
+2025-02-22 06:50:26,324 train INFO: Train epoch:[1/1000], step:[3700/6756], lr:[1.0073263841597018e-06], loss:[2.896156072616577]
+2025-02-22 06:59:43,668 train INFO: Train epoch:[1/1000], step:[3800/6756], lr:[1.0077277461132891e-06], loss:[2.9345695972442627]
+2025-02-22 07:08:57,104 train INFO: Train epoch:[1/1000], step:[3900/6756], lr:[1.0081398099236492e-06], loss:[2.7763893604278564]
+2025-02-22 07:18:17,623 train INFO: Train epoch:[1/1000], step:[4000/6756], lr:[1.0085625755017013e-06], loss:[2.753765106201172]
+2025-02-22 07:27:39,126 train INFO: Train epoch:[1/1000], step:[4100/6756], lr:[1.00899604275602e-06], loss:[2.8717408180236816]
+2025-02-22 07:37:15,576 train INFO: Train epoch:[1/1000], step:[4200/6756], lr:[1.009440211592876e-06], loss:[3.3251049518585205]
+2025-02-22 07:46:36,480 train INFO: Train epoch:[1/1000], step:[4300/6756], lr:[1.009895081916209e-06], loss:[3.3347301483154297]
+2025-02-22 07:55:49,847 train INFO: Train epoch:[1/1000], step:[4400/6756], lr:[1.010360653627682e-06], loss:[3.06925106048584]
+2025-02-22 08:05:11,341 train INFO: Train epoch:[1/1000], step:[4500/6756], lr:[1.010836926626613e-06], loss:[2.805309295654297]
+2025-02-22 08:14:31,549 train INFO: Train epoch:[1/1000], step:[4600/6756], lr:[1.0113239008100301e-06], loss:[2.9764368534088135]
+2025-02-22 08:23:53,266 train INFO: Train epoch:[1/1000], step:[4700/6756], lr:[1.0118215760726031e-06], loss:[2.9017446041107178]
+2025-02-22 08:33:10,545 train INFO: Train epoch:[1/1000], step:[4800/6756], lr:[1.0123299523067384e-06], loss:[2.706798553466797]
+2025-02-22 08:42:27,639 train INFO: Train epoch:[1/1000], step:[4900/6756], lr:[1.012849029402525e-06], loss:[2.693788766860962]
+2025-02-22 08:51:45,495 train INFO: Train epoch:[1/1000], step:[5000/6756], lr:[1.0133788072476938e-06], loss:[3.2985973358154297]
+2025-02-22 09:01:00,431 train INFO: Train epoch:[1/1000], step:[5100/6756], lr:[1.0139192857276988e-06], loss:[2.80332088470459]
+2025-02-22 09:10:18,263 train INFO: Train epoch:[1/1000], step:[5200/6756], lr:[1.0144704647256766e-06], loss:[2.921476125717163]
+2025-02-22 09:19:23,264 train INFO: Train epoch:[1/1000], step:[5300/6756], lr:[1.0150323441224327e-06], loss:[2.8671820163726807]
+2025-02-22 09:28:33,865 train INFO: Train epoch:[1/1000], step:[5400/6756], lr:[1.0156049237964687e-06], loss:[2.83402943611145]
+2025-02-22 09:37:50,618 train INFO: Train epoch:[1/1000], step:[5500/6756], lr:[1.0161882036239958e-06], loss:[3.2165751457214355]
+2025-02-22 09:47:00,814 train INFO: Train epoch:[1/1000], step:[5600/6756], lr:[1.0167821834788671e-06], loss:[2.9570672512054443]
+2025-02-22 09:56:13,776 train INFO: Train epoch:[1/1000], step:[5700/6756], lr:[1.0173868632326589e-06], loss:[3.1186089515686035]
+2025-02-22 10:05:26,822 train INFO: Train epoch:[1/1000], step:[5800/6756], lr:[1.0180022427546027e-06], loss:[3.022728443145752]
+2025-02-22 10:14:42,345 train INFO: Train epoch:[1/1000], step:[5900/6756], lr:[1.018628321911667e-06], loss:[2.676638126373291]
+2025-02-22 10:23:54,421 train INFO: Train epoch:[1/1000], step:[6000/6756], lr:[1.0192651005684215e-06], loss:[2.6961402893066406]
+2025-02-22 10:33:05,897 train INFO: Train epoch:[1/1000], step:[6100/6756], lr:[1.0199125785872266e-06], loss:[3.2087433338165283]
+2025-02-22 10:42:22,674 train INFO: Train epoch:[1/1000], step:[6200/6756], lr:[1.020570755828044e-06], loss:[2.704637289047241]
+2025-02-22 10:51:41,344 train INFO: Train epoch:[1/1000], step:[6300/6756], lr:[1.0212396321485588e-06], loss:[2.846409797668457]
+2025-02-22 11:00:47,912 train INFO: Train epoch:[1/1000], step:[6400/6756], lr:[1.0219192074041383e-06], loss:[3.250002384185791]
+2025-02-22 11:09:58,601 train INFO: Train epoch:[1/1000], step:[6500/6756], lr:[1.022609481447846e-06], loss:[2.90958833694458]
+2025-02-22 11:19:12,927 train INFO: Train epoch:[1/1000], step:[6600/6756], lr:[1.0233104541304279e-06], loss:[2.824514150619507]
+2025-02-22 11:28:24,488 train INFO: Train epoch:[1/1000], step:[6700/6756], lr:[1.0240221253002719e-06], loss:[2.6696038246154785]
+2025-02-22 11:33:28,710 train INFO: Train epoch:[1/1000], step:[6756/6756], lr:[1.0244253341973694e-06], loss:[3.256295680999756]
+2025-02-22 11:39:55,855 train INFO: Valid epoch:[1/1000], step:[100/364], loss:[3.1332931518554688]
+2025-02-22 11:46:01,715 train INFO: Valid epoch:[1/1000], step:[200/364], loss:[2.747598648071289]
+2025-02-22 11:52:12,673 train INFO: Valid epoch:[1/1000], step:[300/364], loss:[3.333810329437256]
+2025-02-22 11:56:07,596 train INFO: Valid epoch:[1/1000], step:[364/364], loss:[2.8820459842681885]
+2025-02-22 11:56:21,579 train INFO: New best model appears in epoch 1.
+2025-02-22 11:56:21,579 train INFO: Epoch 1 average loss:[2.9530794482964735], time:[39006.018183231354]
+2025-02-22 12:05:35,746 train INFO: Train epoch:[2/1000], step:[100/6756], lr:[1.0251536946992586e-06], loss:[2.750250816345215]
+2025-02-22 12:14:40,323 train INFO: Train epoch:[2/1000], step:[200/6756], lr:[1.0258927532898573e-06], loss:[2.759159803390503]
+2025-02-22 12:23:48,748 train INFO: Train epoch:[2/1000], step:[300/6756], lr:[1.0266425098093675e-06], loss:[2.9022576808929443]
+2025-02-22 12:32:54,061 train INFO: Train epoch:[2/1000], step:[400/6756], lr:[1.0274029640956604e-06], loss:[2.7765748500823975]
+2025-02-22 12:41:58,961 train INFO: Train epoch:[2/1000], step:[500/6756], lr:[1.028174115984303e-06], loss:[3.0354106426239014]
+2025-02-22 12:51:08,498 train INFO: Train epoch:[2/1000], step:[600/6756], lr:[1.028955965308559e-06], loss:[2.92166805267334]
+2025-02-22 13:00:17,386 train INFO: Train epoch:[2/1000], step:[700/6756], lr:[1.02974851189936e-06], loss:[3.289109945297241]
+2025-02-22 13:09:27,769 train INFO: Train epoch:[2/1000], step:[800/6756], lr:[1.0305517555853213e-06], loss:[3.2188243865966797]
+2025-02-22 13:18:38,533 train INFO: Train epoch:[2/1000], step:[900/6756], lr:[1.031365696192767e-06], loss:[2.8355307579040527]
+2025-02-22 13:27:49,492 train INFO: Train epoch:[2/1000], step:[1000/6756], lr:[1.0321903335456904e-06], loss:[3.0411059856414795]
+2025-02-22 13:36:56,620 train INFO: Train epoch:[2/1000], step:[1100/6756], lr:[1.0330256674657946e-06], loss:[2.788719654083252]
+2025-02-22 13:46:13,670 train INFO: Train epoch:[2/1000], step:[1200/6756], lr:[1.0338716977724107e-06], loss:[3.114717721939087]
+2025-02-22 13:55:30,073 train INFO: Train epoch:[2/1000], step:[1300/6756], lr:[1.0347284242826475e-06], loss:[3.2973992824554443]
+2025-02-22 14:04:42,605 train INFO: Train epoch:[2/1000], step:[1400/6756], lr:[1.0355958468112283e-06], loss:[3.4346446990966797]
+2025-02-22 14:13:51,672 train INFO: Train epoch:[2/1000], step:[1500/6756], lr:[1.0364739651705997e-06], loss:[2.82598614692688]
+2025-02-22 14:23:00,908 train INFO: Train epoch:[2/1000], step:[1600/6756], lr:[1.0373627791708501e-06], loss:[2.9585437774658203]
+2025-02-22 14:32:16,141 train INFO: Train epoch:[2/1000], step:[1700/6756], lr:[1.0382622886198319e-06], loss:[2.7110085487365723]
+2025-02-22 14:41:28,621 train INFO: Train epoch:[2/1000], step:[1800/6756], lr:[1.039172493323012e-06], loss:[3.071789264678955]
+2025-02-22 14:50:39,341 train INFO: Train epoch:[2/1000], step:[1900/6756], lr:[1.0400933930835942e-06], loss:[3.3782007694244385]
+2025-02-22 14:59:55,995 train INFO: Train epoch:[2/1000], step:[2000/6756], lr:[1.0410249877024376e-06], loss:[3.0981407165527344]
+2025-02-22 15:09:04,578 train INFO: Train epoch:[2/1000], step:[2100/6756], lr:[1.0419672769781111e-06], loss:[2.805516004562378]
+2025-02-22 15:18:16,010 train INFO: Train epoch:[2/1000], step:[2200/6756], lr:[1.0429202607068524e-06], loss:[2.9876670837402344]
+2025-02-22 15:27:21,814 train INFO: Train epoch:[2/1000], step:[2300/6756], lr:[1.0438839386825818e-06], loss:[3.079977035522461]
+2025-02-22 15:36:34,104 train INFO: Train epoch:[2/1000], step:[2400/6756], lr:[1.0448583106969426e-06], loss:[3.234532594680786]
+2025-02-22 15:45:38,722 train INFO: Train epoch:[2/1000], step:[2500/6756], lr:[1.0458433765392474e-06], loss:[2.8971567153930664]
+2025-02-22 15:54:37,198 train INFO: Train epoch:[2/1000], step:[2600/6756], lr:[1.0468391359964776e-06], loss:[3.0461981296539307]
+2025-02-22 16:03:40,425 train INFO: Train epoch:[2/1000], step:[2700/6756], lr:[1.047845588853324e-06], loss:[3.199866533279419]
+2025-02-22 16:12:42,191 train INFO: Train epoch:[2/1000], step:[2800/6756], lr:[1.0488627348921332e-06], loss:[2.795944929122925]
+2025-02-22 16:21:44,084 train INFO: Train epoch:[2/1000], step:[2900/6756], lr:[1.0498905738930153e-06], loss:[3.2287611961364746]
+2025-02-22 16:30:45,476 train INFO: Train epoch:[2/1000], step:[3000/6756], lr:[1.0509291056336683e-06], loss:[2.74280047416687]
+2025-02-22 16:39:44,275 train INFO: Train epoch:[2/1000], step:[3100/6756], lr:[1.051978329889554e-06], loss:[2.666459798812866]
+2025-02-22 16:48:47,228 train INFO: Train epoch:[2/1000], step:[3200/6756], lr:[1.0530382464338028e-06], loss:[2.9917616844177246]
+2025-02-22 16:57:50,099 train INFO: Train epoch:[2/1000], step:[3300/6756], lr:[1.0541088550371875e-06], loss:[2.783416271209717]
+2025-02-22 17:06:51,385 train INFO: Train epoch:[2/1000], step:[3400/6756], lr:[1.0551901554682716e-06], loss:[2.917717933654785]
+2025-02-22 17:15:51,321 train INFO: Train epoch:[2/1000], step:[3500/6756], lr:[1.056282147493179e-06], loss:[2.885352849960327]
+2025-02-22 17:24:51,922 train INFO: Train epoch:[2/1000], step:[3600/6756], lr:[1.0573848308758114e-06], loss:[2.7097151279449463]
+2025-02-22 17:33:47,081 train INFO: Train epoch:[2/1000], step:[3700/6756], lr:[1.0584982053777253e-06], loss:[2.8681552410125732]
+2025-02-22 17:42:44,924 train INFO: Train epoch:[2/1000], step:[3800/6756], lr:[1.0596222707581873e-06], loss:[2.9477791786193848]
+2025-02-22 17:51:51,028 train INFO: Train epoch:[2/1000], step:[3900/6756], lr:[1.0607570267741193e-06], loss:[2.76719069480896]
+2025-02-22 18:01:03,266 train INFO: Train epoch:[2/1000], step:[4000/6756], lr:[1.06190247318018e-06], loss:[2.7479419708251953]
+2025-02-22 18:10:18,515 train INFO: Train epoch:[2/1000], step:[4100/6756], lr:[1.0630586097286289e-06], loss:[2.8844642639160156]
+2025-02-22 18:19:23,851 train INFO: Train epoch:[2/1000], step:[4200/6756], lr:[1.0642254361695305e-06], loss:[3.3162200450897217]
+2025-02-22 18:28:32,466 train INFO: Train epoch:[2/1000], step:[4300/6756], lr:[1.065402952250564e-06], loss:[3.3334691524505615]
+2025-02-22 18:37:42,694 train INFO: Train epoch:[2/1000], step:[4400/6756], lr:[1.0665911577170906e-06], loss:[3.1168947219848633]
+2025-02-22 18:46:45,891 train INFO: Train epoch:[2/1000], step:[4500/6756], lr:[1.0677900523121953e-06], loss:[2.8356852531433105]
+2025-02-22 18:55:47,752 train INFO: Train epoch:[2/1000], step:[4600/6756], lr:[1.0689996357766453e-06], loss:[2.981877565383911]
+2025-02-22 19:04:48,936 train INFO: Train epoch:[2/1000], step:[4700/6756], lr:[1.0702199078488632e-06], loss:[2.8886208534240723]
+2025-02-22 19:13:49,026 train INFO: Train epoch:[2/1000], step:[4800/6756], lr:[1.0714508682650086e-06], loss:[2.7331645488739014]
+2025-02-22 19:22:49,125 train INFO: Train epoch:[2/1000], step:[4900/6756], lr:[1.0726925167589096e-06], loss:[2.68988037109375]
+2025-02-22 19:31:52,065 train INFO: Train epoch:[2/1000], step:[5000/6756], lr:[1.0739448530620502e-06], loss:[3.241772413253784]
+2025-02-22 19:40:57,127 train INFO: Train epoch:[2/1000], step:[5100/6756], lr:[1.075207876903678e-06], loss:[2.8069844245910645]
+2025-02-22 19:50:01,927 train INFO: Train epoch:[2/1000], step:[5200/6756], lr:[1.0764815880106687e-06], loss:[2.890957832336426]
+2025-02-22 19:59:07,053 train INFO: Train epoch:[2/1000], step:[5300/6756], lr:[1.077765986107581e-06], loss:[2.8888494968414307]
+2025-02-22 20:08:10,663 train INFO: Train epoch:[2/1000], step:[5400/6756], lr:[1.0790610709167234e-06], loss:[2.8209457397460938]
+2025-02-22 20:17:16,765 train INFO: Train epoch:[2/1000], step:[5500/6756], lr:[1.0803668421580331e-06], loss:[3.1832430362701416]
+2025-02-22 20:26:14,012 train INFO: Train epoch:[2/1000], step:[5600/6756], lr:[1.0816832995491431e-06], loss:[2.8780677318573]
+2025-02-22 20:35:11,754 train INFO: Train epoch:[2/1000], step:[5700/6756], lr:[1.0830104428054233e-06], loss:[3.107607841491699]
+2025-02-22 20:44:20,708 train INFO: Train epoch:[2/1000], step:[5800/6756], lr:[1.084348271639899e-06], loss:[3.010686159133911]
+2025-02-22 20:53:25,571 train INFO: Train epoch:[2/1000], step:[5900/6756], lr:[1.0856967857632776e-06], loss:[2.7177305221557617]
+2025-02-22 21:02:24,520 train INFO: Train epoch:[2/1000], step:[6000/6756], lr:[1.0870559848839633e-06], loss:[2.7279446125030518]
+2025-02-22 21:11:29,531 train INFO: Train epoch:[2/1000], step:[6100/6756], lr:[1.0884258687080559e-06], loss:[3.2171809673309326]
+2025-02-22 21:20:37,846 train INFO: Train epoch:[2/1000], step:[6200/6756], lr:[1.0898064369393513e-06], loss:[2.6724624633789062]
+2025-02-22 21:29:39,092 train INFO: Train epoch:[2/1000], step:[6300/6756], lr:[1.0911976892793144e-06], loss:[2.8512818813323975]
+2025-02-22 21:38:49,798 train INFO: Train epoch:[2/1000], step:[6400/6756], lr:[1.0925996254271064e-06], loss:[3.214716672897339]
+2025-02-22 21:47:54,846 train INFO: Train epoch:[2/1000], step:[6500/6756], lr:[1.0940122450795841e-06], loss:[2.917649269104004]
+2025-02-22 21:56:58,985 train INFO: Train epoch:[2/1000], step:[6600/6756], lr:[1.0954355479313009e-06], loss:[2.852635383605957]
+2025-02-22 22:06:00,311 train INFO: Train epoch:[2/1000], step:[6700/6756], lr:[1.0968695336745058e-06], loss:[2.683039903640747]
+2025-02-22 22:10:55,288 train INFO: Train epoch:[2/1000], step:[6756/6756], lr:[1.0976772318621895e-06], loss:[3.2607126235961914]
+2025-02-22 22:17:16,807 train INFO: Valid epoch:[2/1000], step:[100/364], loss:[3.152557849884033]
+2025-02-22 22:23:26,653 train INFO: Valid epoch:[2/1000], step:[200/364], loss:[2.7929861545562744]
+2025-02-22 22:29:36,474 train INFO: Valid epoch:[2/1000], step:[300/364], loss:[3.3542439937591553]
+2025-02-22 22:33:33,425 train INFO: Valid epoch:[2/1000], step:[364/364], loss:[2.886662483215332]
+2025-02-22 22:33:45,528 train INFO: New best model appears in epoch 2.
+2025-02-22 22:33:45,528 train INFO: Epoch 2 average loss:[2.953000151849055], time:[38243.94864845276]
+2025-02-22 22:43:02,066 train INFO: Train epoch:[3/1000], step:[100/6756], lr:[1.0991278822960722e-06], loss:[2.7955198287963867]
+2025-02-22 22:52:06,603 train INFO: Train epoch:[3/1000], step:[200/6756], lr:[1.100589214822996e-06], loss:[2.7557740211486816]
+2025-02-22 23:01:12,466 train INFO: Train epoch:[3/1000], step:[300/6756], lr:[1.1020612291270243e-06], loss:[2.8934595584869385]
+2025-02-22 23:10:16,117 train INFO: Train epoch:[3/1000], step:[400/6756], lr:[1.1035439248898083e-06], loss:[2.757936954498291]
+2025-02-22 23:19:15,288 train INFO: Train epoch:[3/1000], step:[500/6756], lr:[1.1050373017907765e-06], loss:[3.054593563079834]
+2025-02-22 23:28:22,973 train INFO: Train epoch:[3/1000], step:[600/6756], lr:[1.1065413595069993e-06], loss:[2.893893003463745]
+2025-02-22 23:37:36,778 train INFO: Train epoch:[3/1000], step:[700/6756], lr:[1.1080560977132567e-06], loss:[3.3157272338867188]
+2025-02-22 23:46:41,974 train INFO: Train epoch:[3/1000], step:[800/6756], lr:[1.1095815160819841e-06], loss:[3.2221341133117676]
+2025-02-22 23:55:45,628 train INFO: Train epoch:[3/1000], step:[900/6756], lr:[1.1111176142833808e-06], loss:[2.808779001235962]
+2025-02-23 00:04:55,981 train INFO: Train epoch:[3/1000], step:[1000/6756], lr:[1.1126643919852607e-06], loss:[3.035059928894043]
+2025-02-23 00:13:59,995 train INFO: Train epoch:[3/1000], step:[1100/6756], lr:[1.1142218488531747e-06], loss:[2.7955901622772217]
+2025-02-23 00:22:59,082 train INFO: Train epoch:[3/1000], step:[1200/6756], lr:[1.115789984550356e-06], loss:[3.1450774669647217]
+2025-02-23 00:32:00,816 train INFO: Train epoch:[3/1000], step:[1300/6756], lr:[1.117368798737693e-06], loss:[3.291884422302246]
+2025-02-23 00:41:05,849 train INFO: Train epoch:[3/1000], step:[1400/6756], lr:[1.1189582910738115e-06], loss:[3.4501969814300537]
+2025-02-23 00:50:12,703 train INFO: Train epoch:[3/1000], step:[1500/6756], lr:[1.1205584612150057e-06], loss:[2.8327157497406006]
+2025-02-23 00:59:23,158 train INFO: Train epoch:[3/1000], step:[1600/6756], lr:[1.1221693088152795e-06], loss:[2.9179561138153076]
+2025-02-23 01:08:28,068 train INFO: Train epoch:[3/1000], step:[1700/6756], lr:[1.1237908335263194e-06], loss:[2.7173330783843994]
+2025-02-23 01:17:29,509 train INFO: Train epoch:[3/1000], step:[1800/6756], lr:[1.125423034997454e-06], loss:[3.035952091217041]
+2025-02-23 01:26:32,047 train INFO: Train epoch:[3/1000], step:[1900/6756], lr:[1.1270659128758022e-06], loss:[3.3855440616607666]
+2025-02-23 01:35:32,937 train INFO: Train epoch:[3/1000], step:[2000/6756], lr:[1.1287194668060713e-06], loss:[3.0983097553253174]
+2025-02-23 01:44:32,645 train INFO: Train epoch:[3/1000], step:[2100/6756], lr:[1.130383696430759e-06], loss:[2.811185836791992]
+2025-02-23 01:53:39,156 train INFO: Train epoch:[3/1000], step:[2200/6756], lr:[1.132058601389978e-06], loss:[3.0139000415802]
+2025-02-23 02:02:40,308 train INFO: Train epoch:[3/1000], step:[2300/6756], lr:[1.133744181321537e-06], loss:[3.085719108581543]
+2025-02-23 02:11:40,459 train INFO: Train epoch:[3/1000], step:[2400/6756], lr:[1.135440435860995e-06], loss:[3.220177412033081]
+2025-02-23 02:20:36,554 train INFO: Train epoch:[3/1000], step:[2500/6756], lr:[1.1371473646415664e-06], loss:[2.9075393676757812]
+2025-02-23 02:29:37,617 train INFO: Train epoch:[3/1000], step:[2600/6756], lr:[1.138864967294121e-06], loss:[3.063204765319824]
+2025-02-23 02:38:41,669 train INFO: Train epoch:[3/1000], step:[2700/6756], lr:[1.1405932434472926e-06], loss:[3.2550134658813477]
+2025-02-23 02:47:42,895 train INFO: Train epoch:[3/1000], step:[2800/6756], lr:[1.1423321927273293e-06], loss:[2.765676975250244]
+2025-02-23 02:56:43,921 train INFO: Train epoch:[3/1000], step:[2900/6756], lr:[1.1440818147582572e-06], loss:[3.2220993041992188]
+2025-02-23 03:05:52,122 train INFO: Train epoch:[3/1000], step:[3000/6756], lr:[1.1458421091617438e-06], loss:[2.7222299575805664]
+2025-02-23 03:14:57,596 train INFO: Train epoch:[3/1000], step:[3100/6756], lr:[1.1476130755571528e-06], loss:[2.6547598838806152]
+2025-02-23 03:23:51,866 train INFO: Train epoch:[3/1000], step:[3200/6756], lr:[1.1493947135615034e-06], loss:[3.0265941619873047]
+2025-02-23 03:32:57,440 train INFO: Train epoch:[3/1000], step:[3300/6756], lr:[1.1511870227896056e-06], loss:[2.802647590637207]
+2025-02-23 03:42:08,711 train INFO: Train epoch:[3/1000], step:[3400/6756], lr:[1.1529900028538708e-06], loss:[2.91385817527771]
+2025-02-23 03:51:16,556 train INFO: Train epoch:[3/1000], step:[3500/6756], lr:[1.1548036533644198e-06], loss:[2.912524938583374]
+2025-02-23 04:00:18,632 train INFO: Train epoch:[3/1000], step:[3600/6756], lr:[1.1566279739291238e-06], loss:[2.682891607284546]
+2025-02-23 04:09:12,801 train INFO: Train epoch:[3/1000], step:[3700/6756], lr:[1.1584629641534823e-06], loss:[2.9117836952209473]
+2025-02-23 04:18:04,243 train INFO: Train epoch:[3/1000], step:[3800/6756], lr:[1.1603086236407044e-06], loss:[2.9338083267211914]
+2025-02-23 04:27:03,744 train INFO: Train epoch:[3/1000], step:[3900/6756], lr:[1.1621649519916953e-06], loss:[2.786527395248413]
+2025-02-23 04:35:51,435 train INFO: Train epoch:[3/1000], step:[4000/6756], lr:[1.1640319488050968e-06], loss:[2.77135968208313]
+2025-02-23 04:44:40,898 train INFO: Train epoch:[3/1000], step:[4100/6756], lr:[1.1659096136771386e-06], loss:[2.874633312225342]
+2025-02-23 04:53:29,738 train INFO: Train epoch:[3/1000], step:[4200/6756], lr:[1.1677979462018683e-06], loss:[3.2880985736846924]
+2025-02-23 05:02:22,075 train INFO: Train epoch:[3/1000], step:[4300/6756], lr:[1.169696945970921e-06], loss:[3.321289300918579]
+2025-02-23 05:11:13,485 train INFO: Train epoch:[3/1000], step:[4400/6756], lr:[1.171606612573696e-06], loss:[3.0846445560455322]
+2025-02-23 05:20:02,597 train INFO: Train epoch:[3/1000], step:[4500/6756], lr:[1.1735269455972612e-06], loss:[2.787997007369995]
+2025-02-23 05:28:56,502 train INFO: Train epoch:[3/1000], step:[4600/6756], lr:[1.1754579446263537e-06], loss:[2.9966530799865723]
+2025-02-23 05:37:50,759 train INFO: Train epoch:[3/1000], step:[4700/6756], lr:[1.1773996092434471e-06], loss:[2.8878915309906006]
+2025-02-23 05:46:54,822 train INFO: Train epoch:[3/1000], step:[4800/6756], lr:[1.1793519390286843e-06], loss:[2.693739414215088]
+2025-02-23 05:55:46,532 train INFO: Train epoch:[3/1000], step:[4900/6756], lr:[1.1813149335599175e-06], loss:[2.6930389404296875]
+2025-02-23 06:04:41,669 train INFO: Train epoch:[3/1000], step:[5000/6756], lr:[1.183288592412668e-06], loss:[3.2515907287597656]
+2025-02-23 06:13:29,841 train INFO: Train epoch:[3/1000], step:[5100/6756], lr:[1.1852729151601667e-06], loss:[2.815671920776367]
+2025-02-23 06:22:24,506 train INFO: Train epoch:[3/1000], step:[5200/6756], lr:[1.1872679013733543e-06], loss:[2.909763813018799]
+2025-02-23 06:31:18,069 train INFO: Train epoch:[3/1000], step:[5300/6756], lr:[1.1892735506208402e-06], loss:[2.8906311988830566]
+2025-02-23 06:40:19,402 train INFO: Train epoch:[3/1000], step:[5400/6756], lr:[1.19128986246893e-06], loss:[2.818960666656494]
+2025-02-23 06:49:12,109 train INFO: Train epoch:[3/1000], step:[5500/6756], lr:[1.1933168364816252e-06], loss:[3.1937038898468018]
+2025-02-23 06:58:05,655 train INFO: Train epoch:[3/1000], step:[5600/6756], lr:[1.1953544722206509e-06], loss:[2.927766799926758]
+2025-02-23 07:06:59,143 train INFO: Train epoch:[3/1000], step:[5700/6756], lr:[1.197402769245387e-06], loss:[3.11086368560791]
+2025-02-23 07:15:51,280 train INFO: Train epoch:[3/1000], step:[5800/6756], lr:[1.1994617271129238e-06], loss:[3.0384812355041504]
+2025-02-23 07:24:41,328 train INFO: Train epoch:[3/1000], step:[5900/6756], lr:[1.2015313453780468e-06], loss:[2.6963045597076416]
+2025-02-23 07:33:34,134 train INFO: Train epoch:[3/1000], step:[6000/6756], lr:[1.2036116235932383e-06], loss:[2.7280354499816895]
+2025-02-23 07:42:25,173 train INFO: Train epoch:[3/1000], step:[6100/6756], lr:[1.2057025613086898e-06], loss:[3.2022085189819336]
+2025-02-23 07:51:09,178 train INFO: Train epoch:[3/1000], step:[6200/6756], lr:[1.2078041580722618e-06], loss:[2.705044984817505]
+2025-02-23 07:59:56,348 train INFO: Train epoch:[3/1000], step:[6300/6756], lr:[1.2099164134295111e-06], loss:[2.863234281539917]
+2025-02-23 08:08:47,631 train INFO: Train epoch:[3/1000], step:[6400/6756], lr:[1.2120393269236904e-06], loss:[3.2191951274871826]
+2025-02-23 08:17:42,262 train INFO: Train epoch:[3/1000], step:[6500/6756], lr:[1.2141728980957756e-06], loss:[2.9316606521606445]
+2025-02-23 08:26:37,017 train INFO: Train epoch:[3/1000], step:[6600/6756], lr:[1.2163171264844116e-06], loss:[2.819506883621216]
+2025-02-23 08:35:29,142 train INFO: Train epoch:[3/1000], step:[6700/6756], lr:[1.2184720116259528e-06], loss:[2.693732500076294]
+2025-02-23 08:40:22,263 train INFO: Train epoch:[3/1000], step:[6756/6756], lr:[1.2196834020013062e-06], loss:[3.2388956546783447]
+2025-02-23 08:46:43,814 train INFO: Valid epoch:[3/1000], step:[100/364], loss:[3.132246255874634]
+2025-02-23 08:52:53,831 train INFO: Valid epoch:[3/1000], step:[200/364], loss:[2.7582080364227295]
+2025-02-23 08:59:04,505 train INFO: Valid epoch:[3/1000], step:[300/364], loss:[3.3279707431793213]
+2025-02-23 09:02:59,393 train INFO: Valid epoch:[3/1000], step:[364/364], loss:[2.8747339248657227]
+2025-02-23 09:03:10,989 train INFO: New best model appears in epoch 3.
+2025-02-23 09:03:10,990 train INFO: Epoch 3 average loss:[2.9526445859081143], time:[37765.461733818054]
+2025-02-23 09:12:40,090 train INFO: Train epoch:[4/1000], step:[100/6756], lr:[1.221854910746071e-06], loss:[2.7688422203063965]
+2025-02-23 09:21:33,670 train INFO: Train epoch:[4/1000], step:[200/6756], lr:[1.2240370750463077e-06], loss:[2.754535675048828]
+2025-02-23 09:30:23,415 train INFO: Train epoch:[4/1000], step:[300/6756], lr:[1.226229894430117e-06], loss:[2.875293016433716]
+2025-02-23 09:39:15,308 train INFO: Train epoch:[4/1000], step:[400/6756], lr:[1.2284333684233639e-06], loss:[2.7761800289154053]
+2025-02-23 09:48:12,396 train INFO: Train epoch:[4/1000], step:[500/6756], lr:[1.2306474965495821e-06], loss:[3.053839921951294]
+2025-02-23 09:56:59,890 train INFO: Train epoch:[4/1000], step:[600/6756], lr:[1.2328722783300016e-06], loss:[2.8789312839508057]
+2025-02-23 10:05:52,180 train INFO: Train epoch:[4/1000], step:[700/6756], lr:[1.2351077132835483e-06], loss:[3.2961394786834717]
+2025-02-23 10:14:57,087 train INFO: Train epoch:[4/1000], step:[800/6756], lr:[1.2373538009268441e-06], loss:[3.217902421951294]
+2025-02-23 10:23:47,373 train INFO: Train epoch:[4/1000], step:[900/6756], lr:[1.2396105407742344e-06], loss:[2.821674346923828]
+2025-02-23 10:32:35,446 train INFO: Train epoch:[4/1000], step:[1000/6756], lr:[1.2418779323377196e-06], loss:[3.0367658138275146]
+2025-02-23 10:41:30,599 train INFO: Train epoch:[4/1000], step:[1100/6756], lr:[1.24415597512701e-06], loss:[2.798140525817871]
+2025-02-23 10:50:12,348 train INFO: Train epoch:[4/1000], step:[1200/6756], lr:[1.246444668649512e-06], loss:[3.141019582748413]
+2025-02-23 10:59:00,987 train INFO: Train epoch:[4/1000], step:[1300/6756], lr:[1.2487440124103684e-06], loss:[3.286311388015747]
+2025-02-23 11:07:43,608 train INFO: Train epoch:[4/1000], step:[1400/6756], lr:[1.2510540059123507e-06], loss:[3.414668321609497]
+2025-02-23 11:16:36,772 train INFO: Train epoch:[4/1000], step:[1500/6756], lr:[1.2533746486559805e-06], loss:[2.8390839099884033]
+2025-02-23 11:25:26,908 train INFO: Train epoch:[4/1000], step:[1600/6756], lr:[1.2557059401394484e-06], loss:[2.9558401107788086]
+2025-02-23 11:34:14,237 train INFO: Train epoch:[4/1000], step:[1700/6756], lr:[1.2580478798586545e-06], loss:[2.715013027191162]
+2025-02-23 11:43:09,809 train INFO: Train epoch:[4/1000], step:[1800/6756], lr:[1.2604004673072222e-06], loss:[3.0546419620513916]
+2025-02-23 11:52:01,408 train INFO: Train epoch:[4/1000], step:[1900/6756], lr:[1.2627637019764032e-06], loss:[3.3481268882751465]
+2025-02-23 12:00:51,005 train INFO: Train epoch:[4/1000], step:[2000/6756], lr:[1.2651375833551995e-06], loss:[3.086484432220459]
+2025-02-23 12:09:49,531 train INFO: Train epoch:[4/1000], step:[2100/6756], lr:[1.267522110930309e-06], loss:[2.8193697929382324]
+2025-02-23 12:18:37,897 train INFO: Train epoch:[4/1000], step:[2200/6756], lr:[1.269917284186126e-06], loss:[3.058692455291748]
+2025-02-23 12:27:36,135 train INFO: Train epoch:[4/1000], step:[2300/6756], lr:[1.2723231026047271e-06], loss:[3.086400032043457]
+2025-02-23 12:36:27,815 train INFO: Train epoch:[4/1000], step:[2400/6756], lr:[1.274739565665885e-06], loss:[3.2217519283294678]
+2025-02-23 12:45:16,542 train INFO: Train epoch:[4/1000], step:[2500/6756], lr:[1.2771666728470817e-06], loss:[2.917008638381958]
+2025-02-23 12:54:11,968 train INFO: Train epoch:[4/1000], step:[2600/6756], lr:[1.2796044236235095e-06], loss:[3.062511920928955]
+2025-02-23 13:03:06,397 train INFO: Train epoch:[4/1000], step:[2700/6756], lr:[1.2820528174680291e-06], loss:[3.2139415740966797]
+2025-02-23 13:11:53,891 train INFO: Train epoch:[4/1000], step:[2800/6756], lr:[1.2845118538512654e-06], loss:[2.80769419670105]
+2025-02-23 13:20:43,602 train INFO: Train epoch:[4/1000], step:[2900/6756], lr:[1.2869815322414307e-06], loss:[3.2290103435516357]
+2025-02-23 13:29:31,448 train INFO: Train epoch:[4/1000], step:[3000/6756], lr:[1.2894618521045283e-06], loss:[2.7355704307556152]
+2025-02-23 13:38:18,703 train INFO: Train epoch:[4/1000], step:[3100/6756], lr:[1.291952812904217e-06], loss:[2.671609878540039]
+2025-02-23 13:47:08,464 train INFO: Train epoch:[4/1000], step:[3200/6756], lr:[1.2944544141019058e-06], loss:[2.9987010955810547]
+2025-02-23 13:56:00,806 train INFO: Train epoch:[4/1000], step:[3300/6756], lr:[1.296966655156632e-06], loss:[2.8036370277404785]
+2025-02-23 14:04:54,282 train INFO: Train epoch:[4/1000], step:[3400/6756], lr:[1.2994895355251696e-06], loss:[2.9112625122070312]
+2025-02-23 14:13:51,516 train INFO: Train epoch:[4/1000], step:[3500/6756], lr:[1.3020230546620024e-06], loss:[2.919429302215576]
+2025-02-23 14:22:43,051 train INFO: Train epoch:[4/1000], step:[3600/6756], lr:[1.30456721201931e-06], loss:[2.7188353538513184]
+2025-02-23 14:31:31,463 train INFO: Train epoch:[4/1000], step:[3700/6756], lr:[1.3071220070469142e-06], loss:[2.901907205581665]
+2025-02-23 14:40:24,389 train INFO: Train epoch:[4/1000], step:[3800/6756], lr:[1.309687439192441e-06], loss:[2.9386472702026367]
+2025-02-23 14:49:24,277 train INFO: Train epoch:[4/1000], step:[3900/6756], lr:[1.3122635079011177e-06], loss:[2.7641091346740723]
+2025-02-23 14:58:13,810 train INFO: Train epoch:[4/1000], step:[4000/6756], lr:[1.3148502126159354e-06], loss:[2.7589612007141113]
+2025-02-23 15:07:11,269 train INFO: Train epoch:[4/1000], step:[4100/6756], lr:[1.3174475527775678e-06], loss:[2.9003522396087646]
+2025-02-23 15:16:02,976 train INFO: Train epoch:[4/1000], step:[4200/6756], lr:[1.3200555278243575e-06], loss:[3.3245415687561035]
+2025-02-23 15:24:24,462 train INFO: Train epoch:[4/1000], step:[4300/6756], lr:[1.3226741371923973e-06], loss:[3.3000731468200684]
+2025-02-23 15:32:48,515 train INFO: Train epoch:[4/1000], step:[4400/6756], lr:[1.3253033803154628e-06], loss:[3.08683180809021]
+2025-02-23 15:41:31,492 train INFO: Train epoch:[4/1000], step:[4500/6756], lr:[1.3279432566249983e-06], loss:[2.8123364448547363]
+2025-02-23 15:49:58,353 train INFO: Train epoch:[4/1000], step:[4600/6756], lr:[1.330593765550212e-06], loss:[3.011474847793579]
+2025-02-23 15:58:25,312 train INFO: Train epoch:[4/1000], step:[4700/6756], lr:[1.333254906517954e-06], loss:[2.9113094806671143]
+2025-02-23 16:06:45,252 train INFO: Train epoch:[4/1000], step:[4800/6756], lr:[1.335926678952784e-06], loss:[2.7099757194519043]
+2025-02-23 16:15:09,089 train INFO: Train epoch:[4/1000], step:[4900/6756], lr:[1.3386090822769983e-06], loss:[2.6909422874450684]
+2025-02-23 16:23:32,923 train INFO: Train epoch:[4/1000], step:[5000/6756], lr:[1.341302115910576e-06], loss:[3.2635743618011475]
+2025-02-23 16:31:59,439 train INFO: Train epoch:[4/1000], step:[5100/6756], lr:[1.344005779271192e-06], loss:[2.8064334392547607]
+2025-02-23 16:40:22,747 train INFO: Train epoch:[4/1000], step:[5200/6756], lr:[1.346720071774204e-06], loss:[2.9514167308807373]
+2025-02-23 16:48:52,955 train INFO: Train epoch:[4/1000], step:[5300/6756], lr:[1.3494449928327197e-06], loss:[2.9031903743743896]
+2025-02-23 16:57:19,880 train INFO: Train epoch:[4/1000], step:[5400/6756], lr:[1.3521805418575158e-06], loss:[2.8182389736175537]
+2025-02-23 17:05:43,661 train INFO: Train epoch:[4/1000], step:[5500/6756], lr:[1.3549267182570653e-06], loss:[3.212552309036255]
+2025-02-23 17:14:07,849 train INFO: Train epoch:[4/1000], step:[5600/6756], lr:[1.357683521437564e-06], loss:[2.908585548400879]
+2025-02-23 17:22:30,921 train INFO: Train epoch:[4/1000], step:[5700/6756], lr:[1.3604509508029043e-06], loss:[3.084690809249878]
+2025-02-23 17:30:53,023 train INFO: Train epoch:[4/1000], step:[5800/6756], lr:[1.3632290057546606e-06], loss:[3.03851318359375]
+2025-02-23 17:39:15,835 train INFO: Train epoch:[4/1000], step:[5900/6756], lr:[1.3660176856921308e-06], loss:[2.7133772373199463]
+2025-02-23 17:47:38,237 train INFO: Train epoch:[4/1000], step:[6000/6756], lr:[1.3688169900123357e-06], loss:[2.7274715900421143]
+2025-02-23 17:55:58,093 train INFO: Train epoch:[4/1000], step:[6100/6756], lr:[1.3716269181099383e-06], loss:[3.2010529041290283]
+2025-02-23 18:04:21,769 train INFO: Train epoch:[4/1000], step:[6200/6756], lr:[1.374447469377365e-06], loss:[2.707505226135254]
+2025-02-23 18:12:39,777 train INFO: Train epoch:[4/1000], step:[6300/6756], lr:[1.3772786432046983e-06], loss:[2.8695688247680664]
+2025-02-23 18:20:59,768 train INFO: Train epoch:[4/1000], step:[6400/6756], lr:[1.3801204389797566e-06], loss:[3.2299509048461914]
+2025-02-23 18:29:20,387 train INFO: Train epoch:[4/1000], step:[6500/6756], lr:[1.382972856088055e-06], loss:[2.914019823074341]
+2025-02-23 18:37:44,092 train INFO: Train epoch:[4/1000], step:[6600/6756], lr:[1.3858358939128178e-06], loss:[2.8629183769226074]
+2025-02-23 18:46:04,135 train INFO: Train epoch:[4/1000], step:[6700/6756], lr:[1.388709551834925e-06], loss:[2.677302837371826]
+2025-02-23 18:50:41,318 train INFO: Train epoch:[4/1000], step:[6756/6756], lr:[1.3903234388983298e-06], loss:[3.229633092880249]
+2025-02-23 18:57:01,226 train INFO: Valid epoch:[4/1000], step:[100/364], loss:[3.1422674655914307]
+2025-02-23 19:03:12,374 train INFO: Valid epoch:[4/1000], step:[200/364], loss:[2.7673869132995605]
+2025-02-23 19:09:23,097 train INFO: Valid epoch:[4/1000], step:[300/364], loss:[3.339541435241699]
+2025-02-23 19:13:16,148 train INFO: Valid epoch:[4/1000], step:[364/364], loss:[2.91080904006958]
+2025-02-23 19:13:16,149 train INFO: Epoch 4 average loss:[2.9528461688167447], time:[36605.15881705284]
+2025-02-23 19:22:25,834 train INFO: Train epoch:[5/1000], step:[100/6756], lr:[1.39321366293071e-06], loss:[2.7755179405212402]
+2025-02-23 19:30:46,120 train INFO: Train epoch:[5/1000], step:[200/6756], lr:[1.3961145054651393e-06], loss:[2.761051654815674]
+2025-02-23 19:39:10,589 train INFO: Train epoch:[5/1000], step:[300/6756], lr:[1.3990259658743529e-06], loss:[2.8724687099456787]
+2025-02-23 19:47:32,095 train INFO: Train epoch:[5/1000], step:[400/6756], lr:[1.4019480435288357e-06], loss:[2.80778169631958]
+2025-02-23 19:55:53,057 train INFO: Train epoch:[5/1000], step:[500/6756], lr:[1.404880737796674e-06], loss:[3.0402910709381104]
+2025-02-23 20:04:15,384 train INFO: Train epoch:[5/1000], step:[600/6756], lr:[1.4078240480437724e-06], loss:[2.8884429931640625]
+2025-02-23 20:12:40,826 train INFO: Train epoch:[5/1000], step:[700/6756], lr:[1.410777973633677e-06], loss:[3.3166208267211914]
+2025-02-23 20:21:00,187 train INFO: Train epoch:[5/1000], step:[800/6756], lr:[1.413742513927657e-06], loss:[3.1701643466949463]
+2025-02-23 20:29:22,770 train INFO: Train epoch:[5/1000], step:[900/6756], lr:[1.416717668284651e-06], loss:[2.8643548488616943]
+2025-02-23 20:37:44,090 train INFO: Train epoch:[5/1000], step:[1000/6756], lr:[1.4197034360613746e-06], loss:[3.0353333950042725]
+2025-02-23 20:46:14,879 train INFO: Train epoch:[5/1000], step:[1100/6756], lr:[1.4226998166121991e-06], loss:[2.8088648319244385]
+2025-02-23 20:54:41,387 train INFO: Train epoch:[5/1000], step:[1200/6756], lr:[1.425706809289178e-06], loss:[3.128204345703125]
+2025-02-23 21:03:04,802 train INFO: Train epoch:[5/1000], step:[1300/6756], lr:[1.428724413442129e-06], loss:[3.3173840045928955]
+2025-02-23 21:11:29,589 train INFO: Train epoch:[5/1000], step:[1400/6756], lr:[1.431752628418525e-06], loss:[3.387810468673706]
+2025-02-23 21:19:56,969 train INFO: Train epoch:[5/1000], step:[1500/6756], lr:[1.434791453563589e-06], loss:[2.8298254013061523]
+2025-02-23 21:28:16,206 train INFO: Train epoch:[5/1000], step:[1600/6756], lr:[1.437840888220227e-06], loss:[2.950291395187378]
+2025-02-23 21:36:39,680 train INFO: Train epoch:[5/1000], step:[1700/6756], lr:[1.440900931729027e-06], loss:[2.682121992111206]
+2025-02-23 21:45:00,159 train INFO: Train epoch:[5/1000], step:[1800/6756], lr:[1.4439715834283276e-06], loss:[3.0574772357940674]
+2025-02-23 21:53:24,515 train INFO: Train epoch:[5/1000], step:[1900/6756], lr:[1.44705284265415e-06], loss:[3.3480849266052246]
+2025-02-23 22:02:05,899 train INFO: Train epoch:[5/1000], step:[2000/6756], lr:[1.4501447087402245e-06], loss:[3.0792789459228516]
+2025-02-23 22:10:26,309 train INFO: Train epoch:[5/1000], step:[2100/6756], lr:[1.4532471810179781e-06], loss:[2.8165621757507324]
+2025-02-23 22:18:45,668 train INFO: Train epoch:[5/1000], step:[2200/6756], lr:[1.4563602588165472e-06], loss:[3.0010242462158203]
+2025-02-23 22:27:08,079 train INFO: Train epoch:[5/1000], step:[2300/6756], lr:[1.4594839414628047e-06], loss:[3.0784595012664795]
+2025-02-23 22:35:29,588 train INFO: Train epoch:[5/1000], step:[2400/6756], lr:[1.4626182282813062e-06], loss:[3.250399589538574]
+2025-02-23 22:43:51,381 train INFO: Train epoch:[5/1000], step:[2500/6756], lr:[1.4657631185943171e-06], loss:[2.9130027294158936]
+2025-02-23 22:52:15,497 train INFO: Train epoch:[5/1000], step:[2600/6756], lr:[1.468918611721785e-06], loss:[3.0590622425079346]
+2025-02-23 23:00:35,733 train INFO: Train epoch:[5/1000], step:[2700/6756], lr:[1.472084706981408e-06], loss:[3.2171430587768555]
+2025-02-23 23:08:58,153 train INFO: Train epoch:[5/1000], step:[2800/6756], lr:[1.4752614036885666e-06], loss:[2.784047842025757]
+2025-02-23 23:17:21,376 train INFO: Train epoch:[5/1000], step:[2900/6756], lr:[1.478448701156351e-06], loss:[3.217923641204834]
+2025-02-23 23:25:42,218 train INFO: Train epoch:[5/1000], step:[3000/6756], lr:[1.4816465986955743e-06], loss:[2.732712507247925]
+2025-02-23 23:34:08,420 train INFO: Train epoch:[5/1000], step:[3100/6756], lr:[1.4848550956147462e-06], loss:[2.639491081237793]
+2025-02-23 23:42:35,627 train INFO: Train epoch:[5/1000], step:[3200/6756], lr:[1.4880741912200721e-06], loss:[2.996220111846924]
+2025-02-23 23:50:55,991 train INFO: Train epoch:[5/1000], step:[3300/6756], lr:[1.4913038848154807e-06], loss:[2.7879130840301514]
+2025-02-23 23:59:17,371 train INFO: Train epoch:[5/1000], step:[3400/6756], lr:[1.4945441757026101e-06], loss:[2.8744072914123535]
+2025-02-24 00:07:41,323 train INFO: Train epoch:[5/1000], step:[3500/6756], lr:[1.4977950631807948e-06], loss:[2.884678363800049]
+2025-02-24 00:16:08,776 train INFO: Train epoch:[5/1000], step:[3600/6756], lr:[1.5010565465470923e-06], loss:[2.6978838443756104]
+2025-02-24 00:24:28,925 train INFO: Train epoch:[5/1000], step:[3700/6756], lr:[1.504328625096256e-06], loss:[2.863431692123413]
+2025-02-24 00:32:51,743 train INFO: Train epoch:[5/1000], step:[3800/6756], lr:[1.5076112981207766e-06], loss:[2.93057918548584]
+2025-02-24 00:41:12,153 train INFO: Train epoch:[5/1000], step:[3900/6756], lr:[1.510904564910813e-06], loss:[2.741154193878174]
+2025-02-24 00:49:34,634 train INFO: Train epoch:[5/1000], step:[4000/6756], lr:[1.5142084247542345e-06], loss:[2.754962205886841]
+2025-02-24 00:57:56,342 train INFO: Train epoch:[5/1000], step:[4100/6756], lr:[1.5175228769367005e-06], loss:[2.868422508239746]
+2025-02-24 01:06:16,020 train INFO: Train epoch:[5/1000], step:[4200/6756], lr:[1.5208479207414453e-06], loss:[3.336623430252075]
+2025-02-24 01:14:40,954 train INFO: Train epoch:[5/1000], step:[4300/6756], lr:[1.5241835554495207e-06], loss:[3.3294224739074707]
+2025-02-24 01:23:09,374 train INFO: Train epoch:[5/1000], step:[4400/6756], lr:[1.5275297803396477e-06], loss:[3.1142866611480713]
+2025-02-24 01:31:42,121 train INFO: Train epoch:[5/1000], step:[4500/6756], lr:[1.530886594688284e-06], loss:[2.7874019145965576]
+2025-02-24 01:40:01,904 train INFO: Train epoch:[5/1000], step:[4600/6756], lr:[1.5342539977695427e-06], loss:[2.9975595474243164]
+2025-02-24 01:48:23,798 train INFO: Train epoch:[5/1000], step:[4700/6756], lr:[1.5376319888552872e-06], loss:[2.873429536819458]
+2025-02-24 01:56:45,977 train INFO: Train epoch:[5/1000], step:[4800/6756], lr:[1.5410205672150904e-06], loss:[2.7241029739379883]
+2025-02-24 02:05:12,636 train INFO: Train epoch:[5/1000], step:[4900/6756], lr:[1.544419732116235e-06], loss:[2.6790082454681396]
+2025-02-24 02:13:32,827 train INFO: Train epoch:[5/1000], step:[5000/6756], lr:[1.5478294828237131e-06], loss:[3.231074094772339]
+2025-02-24 02:21:51,794 train INFO: Train epoch:[5/1000], step:[5100/6756], lr:[1.5512498186001997e-06], loss:[2.821277379989624]
+2025-02-24 02:30:15,849 train INFO: Train epoch:[5/1000], step:[5200/6756], lr:[1.5546807387061332e-06], loss:[2.8984196186065674]
+2025-02-24 02:38:40,380 train INFO: Train epoch:[5/1000], step:[5300/6756], lr:[1.5581222423996212e-06], loss:[2.8820111751556396]
+2025-02-24 02:46:59,062 train INFO: Train epoch:[5/1000], step:[5400/6756], lr:[1.561574328936508e-06], loss:[2.785202741622925]
+2025-02-24 02:55:18,622 train INFO: Train epoch:[5/1000], step:[5500/6756], lr:[1.565036997570334e-06], loss:[3.1983587741851807]
+2025-02-24 03:03:42,889 train INFO: Train epoch:[5/1000], step:[5600/6756], lr:[1.5685102475523492e-06], loss:[2.897587776184082]
+2025-02-24 03:12:06,641 train INFO: Train epoch:[5/1000], step:[5700/6756], lr:[1.5719940781315267e-06], loss:[3.0976078510284424]
+2025-02-24 03:20:26,930 train INFO: Train epoch:[5/1000], step:[5800/6756], lr:[1.5754884885545492e-06], loss:[3.047757625579834]
+2025-02-24 03:28:48,154 train INFO: Train epoch:[5/1000], step:[5900/6756], lr:[1.5789934780658228e-06], loss:[2.677602767944336]
+2025-02-24 03:37:13,565 train INFO: Train epoch:[5/1000], step:[6000/6756], lr:[1.5825090459074224e-06], loss:[2.7052156925201416]
+2025-02-24 03:45:37,261 train INFO: Train epoch:[5/1000], step:[6100/6756], lr:[1.5860351913191866e-06], loss:[3.250319719314575]
+2025-02-24 03:54:03,838 train INFO: Train epoch:[5/1000], step:[6200/6756], lr:[1.589571913538664e-06], loss:[2.7197115421295166]
+2025-02-24 04:02:23,770 train INFO: Train epoch:[5/1000], step:[6300/6756], lr:[1.593119211801058e-06], loss:[2.858619451522827]
+2025-02-24 04:10:45,462 train INFO: Train epoch:[5/1000], step:[6400/6756], lr:[1.5966770853393638e-06], loss:[3.21806001663208]
+2025-02-24 04:19:06,669 train INFO: Train epoch:[5/1000], step:[6500/6756], lr:[1.600245533384245e-06], loss:[2.9151532649993896]
+2025-02-24 04:27:27,057 train INFO: Train epoch:[5/1000], step:[6600/6756], lr:[1.603824555164061e-06], loss:[2.8475213050842285]
+2025-02-24 04:35:48,217 train INFO: Train epoch:[5/1000], step:[6700/6756], lr:[1.6074141499049222e-06], loss:[2.7004897594451904]
+2025-02-24 04:40:26,804 train INFO: Train epoch:[5/1000], step:[6756/6756], lr:[1.6094289409399954e-06], loss:[3.2501893043518066]
+2025-02-24 04:46:50,634 train INFO: Valid epoch:[5/1000], step:[100/364], loss:[3.1263344287872314]
+2025-02-24 04:53:01,798 train INFO: Valid epoch:[5/1000], step:[200/364], loss:[2.768679618835449]
+2025-02-24 04:59:14,314 train INFO: Valid epoch:[5/1000], step:[300/364], loss:[3.34938383102417]
+2025-02-24 05:03:11,579 train INFO: Valid epoch:[5/1000], step:[364/364], loss:[2.862534523010254]
+2025-02-24 05:03:11,580 train INFO: Epoch 5 average loss:[2.954358608513088], time:[35395.43123650551]
+2025-02-24 05:12:02,519 train INFO: Train epoch:[6/1000], step:[100/6756], lr:[1.6130350279493585e-06], loss:[2.782506227493286]
+2025-02-24 05:20:30,246 train INFO: Train epoch:[6/1000], step:[200/6756], lr:[1.6166516859281686e-06], loss:[2.754290819168091]
+2025-02-24 05:28:51,304 train INFO: Train epoch:[6/1000], step:[300/6756], lr:[1.6202789140943772e-06], loss:[2.8995370864868164]
+2025-02-24 05:37:11,228 train INFO: Train epoch:[6/1000], step:[400/6756], lr:[1.6239167116636588e-06], loss:[2.7810866832733154]
+2025-02-24 05:45:42,185 train INFO: Train epoch:[6/1000], step:[500/6756], lr:[1.6275650778494111e-06], loss:[3.0758140087127686]
+2025-02-24 05:54:25,001 train INFO: Train epoch:[6/1000], step:[600/6756], lr:[1.6312240118627146e-06], loss:[2.9149906635284424]
+2025-02-24 06:02:50,337 train INFO: Train epoch:[6/1000], step:[700/6756], lr:[1.6348935129124268e-06], loss:[3.297461748123169]
+2025-02-24 06:11:09,541 train INFO: Train epoch:[6/1000], step:[800/6756], lr:[1.6385735802050474e-06], loss:[3.1760053634643555]
+2025-02-24 06:19:32,501 train INFO: Train epoch:[6/1000], step:[900/6756], lr:[1.6422642129448395e-06], loss:[2.8204734325408936]
+2025-02-24 06:27:53,019 train INFO: Train epoch:[6/1000], step:[1000/6756], lr:[1.6459654103337493e-06], loss:[3.011904239654541]
+2025-02-24 06:36:21,624 train INFO: Train epoch:[6/1000], step:[1100/6756], lr:[1.6496771715714727e-06], loss:[2.7972137928009033]
+2025-02-24 06:44:44,557 train INFO: Train epoch:[6/1000], step:[1200/6756], lr:[1.6533994958554157e-06], loss:[3.121433734893799]
+2025-02-24 06:53:02,792 train INFO: Train epoch:[6/1000], step:[1300/6756], lr:[1.65713238238068e-06], loss:[3.3178460597991943]
+2025-02-24 07:01:24,214 train INFO: Train epoch:[6/1000], step:[1400/6756], lr:[1.6608758303400637e-06], loss:[3.4263579845428467]
+2025-02-24 07:09:49,389 train INFO: Train epoch:[6/1000], step:[1500/6756], lr:[1.664629838924169e-06], loss:[2.859029531478882]
+2025-02-24 07:18:09,133 train INFO: Train epoch:[6/1000], step:[1600/6756], lr:[1.6683944073211997e-06], loss:[2.9169816970825195]
+2025-02-24 07:26:28,129 train INFO: Train epoch:[6/1000], step:[1700/6756], lr:[1.6721695347171638e-06], loss:[2.720033645629883]
+2025-02-24 07:34:49,373 train INFO: Train epoch:[6/1000], step:[1800/6756], lr:[1.675955220295725e-06], loss:[3.05999493598938]
+2025-02-24 07:43:12,422 train INFO: Train epoch:[6/1000], step:[1900/6756], lr:[1.6797514632383375e-06], loss:[3.377150535583496]
+2025-02-24 07:51:30,177 train INFO: Train epoch:[6/1000], step:[2000/6756], lr:[1.6835582627240843e-06], loss:[3.087104082107544]
+2025-02-24 07:59:49,406 train INFO: Train epoch:[6/1000], step:[2100/6756], lr:[1.6873756179298525e-06], loss:[2.8410580158233643]
+2025-02-24 08:08:21,710 train INFO: Train epoch:[6/1000], step:[2200/6756], lr:[1.6912035280301714e-06], loss:[3.0321006774902344]
+2025-02-24 08:16:45,907 train INFO: Train epoch:[6/1000], step:[2300/6756], lr:[1.6950419921973338e-06], loss:[3.088583469390869]
+2025-02-24 08:25:05,034 train INFO: Train epoch:[6/1000], step:[2400/6756], lr:[1.6988910096013289e-06], loss:[3.240260362625122]
+2025-02-24 08:33:25,477 train INFO: Train epoch:[6/1000], step:[2500/6756], lr:[1.7027505794098822e-06], loss:[2.9218223094940186]
+2025-02-24 08:41:44,434 train INFO: Train epoch:[6/1000], step:[2600/6756], lr:[1.7066207007884428e-06], loss:[3.0885658264160156]
+2025-02-24 08:50:08,106 train INFO: Train epoch:[6/1000], step:[2700/6756], lr:[1.7105013729001422e-06], loss:[3.2138383388519287]
+2025-02-24 08:58:32,511 train INFO: Train epoch:[6/1000], step:[2800/6756], lr:[1.714392594905835e-06], loss:[2.767899990081787]
+2025-02-24 09:06:53,530 train INFO: Train epoch:[6/1000], step:[2900/6756], lr:[1.7182943659641394e-06], loss:[3.204099655151367]
+2025-02-24 09:15:16,252 train INFO: Train epoch:[6/1000], step:[3000/6756], lr:[1.7222066852313567e-06], loss:[2.7579028606414795]
+2025-02-24 09:23:33,518 train INFO: Train epoch:[6/1000], step:[3100/6756], lr:[1.7261295518615244e-06], loss:[2.671757459640503]
+2025-02-24 09:32:00,782 train INFO: Train epoch:[6/1000], step:[3200/6756], lr:[1.7300629650063764e-06], loss:[2.989794969558716]
+2025-02-24 09:40:21,345 train INFO: Train epoch:[6/1000], step:[3300/6756], lr:[1.7340069238153696e-06], loss:[2.779634714126587]
+2025-02-24 09:48:36,654 train INFO: Train epoch:[6/1000], step:[3400/6756], lr:[1.7379614274357113e-06], loss:[2.8783507347106934]
+2025-02-24 09:56:55,758 train INFO: Train epoch:[6/1000], step:[3500/6756], lr:[1.7419264750123046e-06], loss:[2.930234670639038]
+2025-02-24 10:05:15,897 train INFO: Train epoch:[6/1000], step:[3600/6756], lr:[1.7459020656877627e-06], loss:[2.6827456951141357]
+2025-02-24 10:13:35,970 train INFO: Train epoch:[6/1000], step:[3700/6756], lr:[1.7498881986024485e-06], loss:[2.908801317214966]
+2025-02-24 10:21:54,993 train INFO: Train epoch:[6/1000], step:[3800/6756], lr:[1.753884872894408e-06], loss:[2.969294786453247]
+2025-02-24 10:30:11,695 train INFO: Train epoch:[6/1000], step:[3900/6756], lr:[1.7578920876994505e-06], loss:[2.7647759914398193]
+2025-02-24 10:38:32,092 train INFO: Train epoch:[6/1000], step:[4000/6756], lr:[1.7619098421510818e-06], loss:[2.7624335289001465]
+2025-02-24 10:46:49,527 train INFO: Train epoch:[6/1000], step:[4100/6756], lr:[1.7659381353805171e-06], loss:[2.8945515155792236]
+2025-02-24 10:55:09,922 train INFO: Train epoch:[6/1000], step:[4200/6756], lr:[1.7699769665167084e-06], loss:[3.3014354705810547]
+2025-02-24 11:03:30,130 train INFO: Train epoch:[6/1000], step:[4300/6756], lr:[1.7740263346863443e-06], loss:[3.336832284927368]
+2025-02-24 11:11:53,453 train INFO: Train epoch:[6/1000], step:[4400/6756], lr:[1.7780862390138097e-06], loss:[3.129059076309204]
+2025-02-24 11:20:12,273 train INFO: Train epoch:[6/1000], step:[4500/6756], lr:[1.7821566786212125e-06], loss:[2.802551746368408]
+2025-02-24 11:28:32,449 train INFO: Train epoch:[6/1000], step:[4600/6756], lr:[1.7862376526283838e-06], loss:[2.950329303741455]
+2025-02-24 11:37:11,374 train INFO: Train epoch:[6/1000], step:[4700/6756], lr:[1.7903291601529186e-06], loss:[2.8967206478118896]
+2025-02-24 11:45:55,755 train INFO: Train epoch:[6/1000], step:[4800/6756], lr:[1.7944312003100672e-06], loss:[2.713310718536377]
+2025-02-24 11:54:17,570 train INFO: Train epoch:[6/1000], step:[4900/6756], lr:[1.7985437722128304e-06], loss:[2.7329742908477783]
+2025-02-24 12:02:36,644 train INFO: Train epoch:[6/1000], step:[5000/6756], lr:[1.8026668749719453e-06], loss:[3.274423837661743]
+2025-02-24 12:10:53,733 train INFO: Train epoch:[6/1000], step:[5100/6756], lr:[1.8068005076958728e-06], loss:[2.774282455444336]
+2025-02-24 12:19:12,063 train INFO: Train epoch:[6/1000], step:[5200/6756], lr:[1.8109446694907557e-06], loss:[2.898465871810913]
+2025-02-24 12:27:35,139 train INFO: Train epoch:[6/1000], step:[5300/6756], lr:[1.8150993594605281e-06], loss:[2.868748188018799]
+2025-02-24 12:35:54,746 train INFO: Train epoch:[6/1000], step:[5400/6756], lr:[1.8192645767067795e-06], loss:[2.7951126098632812]
+2025-02-24 12:44:14,366 train INFO: Train epoch:[6/1000], step:[5500/6756], lr:[1.823440320328863e-06], loss:[3.179701566696167]
+2025-02-24 12:52:35,408 train INFO: Train epoch:[6/1000], step:[5600/6756], lr:[1.8276265894238416e-06], loss:[2.9159624576568604]
+2025-02-24 13:01:00,657 train INFO: Train epoch:[6/1000], step:[5700/6756], lr:[1.8318233830865284e-06], loss:[3.1043636798858643]
+2025-02-24 13:09:21,105 train INFO: Train epoch:[6/1000], step:[5800/6756], lr:[1.8360307004094056e-06], loss:[3.0273470878601074]
+2025-02-24 13:17:42,865 train INFO: Train epoch:[6/1000], step:[5900/6756], lr:[1.8402485404827326e-06], loss:[2.6905581951141357]
+2025-02-24 13:26:08,046 train INFO: Train epoch:[6/1000], step:[6000/6756], lr:[1.844476902394465e-06], loss:[2.6996500492095947]
+2025-02-24 13:34:27,776 train INFO: Train epoch:[6/1000], step:[6100/6756], lr:[1.8487157852302953e-06], loss:[3.20210337638855]
+2025-02-24 13:42:46,120 train INFO: Train epoch:[6/1000], step:[6200/6756], lr:[1.8529651880736387e-06], loss:[2.7066879272460938]
+2025-02-24 13:51:05,559 train INFO: Train epoch:[6/1000], step:[6300/6756], lr:[1.857225110005634e-06], loss:[2.8678836822509766]
+2025-02-24 13:59:28,616 train INFO: Train epoch:[6/1000], step:[6400/6756], lr:[1.8614955501051566e-06], loss:[3.22605299949646]
+2025-02-24 14:07:56,291 train INFO: Train epoch:[6/1000], step:[6500/6756], lr:[1.865776507448778e-06], loss:[2.9234888553619385]
+2025-02-24 14:16:34,035 train INFO: Train epoch:[6/1000], step:[6600/6756], lr:[1.8700679811108062e-06], loss:[2.8736250400543213]
+2025-02-24 14:24:52,608 train INFO: Train epoch:[6/1000], step:[6700/6756], lr:[1.874369970163327e-06], loss:[2.6673874855041504]
+2025-02-24 14:29:29,366 train INFO: Train epoch:[6/1000], step:[6756/6756], lr:[1.876783676808648e-06], loss:[3.234567403793335]
+2025-02-24 14:35:52,858 train INFO: Valid epoch:[6/1000], step:[100/364], loss:[3.170933723449707]
+2025-02-24 14:42:05,282 train INFO: Valid epoch:[6/1000], step:[200/364], loss:[2.7708523273468018]
+2025-02-24 14:48:19,007 train INFO: Valid epoch:[6/1000], step:[300/364], loss:[3.3284099102020264]
+2025-02-24 14:52:12,780 train INFO: Valid epoch:[6/1000], step:[364/364], loss:[2.84692120552063]
+2025-02-24 14:52:12,781 train INFO: Epoch 6 average loss:[2.9549647635155982], time:[35341.20114159584]
+2025-02-24 15:01:18,987 train INFO: Train epoch:[7/1000], step:[100/6756], lr:[1.8811020680119516e-06], loss:[2.7540624141693115]
+2025-02-24 15:09:56,556 train INFO: Train epoch:[7/1000], step:[200/6756], lr:[1.8854309722197846e-06], loss:[2.75396466255188]

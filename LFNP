@@ -1,0 +1,67 @@
+SLURM_STEP_NODELIST: 
+SLURM_JOB_NODELIST: SH-IDC1-10-140-24-105
+SLURM_NODELIST: SH-IDC1-10-140-24-105
+SLURM_SRUN_COMM_PORT: 
+Start
+2025-02-19 14:08:31,850 train INFO: Building config ...
+2025-02-19 14:08:31,851 train INFO: Building models ...
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+model_params {'type': 'LFNP', 'VAEparams': {'arch': 'vit_large', 'pretrained_model': '', 'patch_size': [4, 4], 'patch_stride': [4, 4], 'in_chans': 69, 'out_chans': 69, 'kwargs': {'z_dim': 69, 'learnable_pos': True, 'window': True, 'window_size': [[24, 24], [12, 48], [48, 12]], 'interval': 4, 'drop_path_rate': 0.0, 'round_padding': True, 'pad_attn_mask': True, 'test_pos_mode': 'learnable_simple_interpolate', 'lms_checkpoint_train': True, 'img_size': [128, 256]}}, 'FNPparams': {'n_channels': [16, 48, 48, 48, 48, 48], 'r_dim': 128, 'use_nfl': True, 'use_dam': True}, 'criterion': 'CNPFLoss', 'optimizer': {'type': 'AdamW', 'params': {'lr': 0.0001, 'betas': [0.9, 0.9], 'weight_decay': 0.01}}, 'lr_scheduler': {'type': 'OneCycleLR', 'params': {'max_lr': 0.0001, 'pct_start': 0.1, 'anneal_strategy': 'cos', 'div_factor': 100, 'final_div_factor': 1000}}}
+model_params: {'type': 'LFNP', 'VAEparams': {'arch': 'vit_large', 'pretrained_model': '', 'patch_size': [4, 4], 'patch_stride': [4, 4], 'in_chans': 69, 'out_chans': 69, 'kwargs': {'z_dim': 69, 'learnable_pos': True, 'window': True, 'window_size': [[24, 24], [12, 48], [48, 12]], 'interval': 4, 'drop_path_rate': 0.0, 'round_padding': True, 'pad_attn_mask': True, 'test_pos_mode': 'learnable_simple_interpolate', 'lms_checkpoint_train': True, 'img_size': [128, 256]}}, 'FNPparams': {'n_channels': [16, 48, 48, 48, 48, 48], 'r_dim': 128, 'use_nfl': True, 'use_dam': True}, 'criterion': 'CNPFLoss', 'optimizer': {'type': 'AdamW', 'params': {'lr': 0.0001, 'betas': [0.9, 0.9], 'weight_decay': 0.01}}, 'lr_scheduler': {'type': 'OneCycleLR', 'params': {'max_lr': 0.0001, 'pct_start': 0.1, 'anneal_strategy': 'cos', 'div_factor': 100, 'final_div_factor': 1000}}}
+{'arch': 'vit_large', 'pretrained_model': '', 'patch_size': (11, 10), 'patch_stride': (10, 10), 'in_chans': 69, 'out_chans': 69, 'kwargs': {'z_dim': 256, 'depth': 24, 'embed_dim': 1024, 'learnable_pos': True, 'window': True, 'window_size': [(24, 24), (12, 48), (48, 12)], 'interval': 4, 'drop_path_rate': 0.0, 'round_padding': True, 'pad_attn_mask': True, 'test_pos_mode': 'learnable_simple_interpolate', 'lms_checkpoint_train': True, 'img_size': (721, 1440)}}
+r_dim: 128
+2025-02-19 14:08:52,000 train INFO: Building forecast models ...
+Building forecast models ...
+2025-02-19 14:10:46.750101174 [W:onnxruntime:, session_state.cc:1162 VerifyEachNodeIsAssignedToAnEp] Some nodes were not assigned to the preferred execution providers which may or may not have an negative impact on performance. e.g. ORT explicitly assigns shape related ops to CPU to improve perf.
+2025-02-19 14:10:46.750158913 [W:onnxruntime:, session_state.cc:1164 VerifyEachNodeIsAssignedToAnEp] Rerunning with verbose output on a non-minimal build will show node assignments.
+2025-02-19 14:10:49,689 train INFO: Building dataloaders ...
+2025-02-19 14:10:49,689 train INFO: dataloader
+dataset: <datasets.era5_npy_f32.era5_npy_f32 object at 0x7fa8b1365370>
+batch_size 1
+dataset: <datasets.era5_npy_f32.era5_npy_f32 object at 0x7fa719fa5fa0>
+batch_size 1
+2025-02-19 14:11:00,460 train INFO: begin training ...
+begin training ...
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+2025-02-19 14:18:56,613 train INFO: Train epoch:[1/1000], step:[100/54051], lr:[1.000000083611812e-06], loss:[3.127988338470459]
+2025-02-19 14:26:42,311 train INFO: Train epoch:[1/1000], step:[200/54051], lr:[1.000000334447243e-06], loss:[2.6117594242095947]
+Traceback (most recent call last):
+  File "train_LFNP.py", line 101, in <module>
+    main(args)
+  File "train_LFNP.py", line 79, in main
+    subprocess_fn(args)
+  File "train_LFNP.py", line 47, in subprocess_fn
+    model.train(train_dataloader, valid_dataloader, logger, args)
+  File "/mnt/petrelfs/sunjingan/HighResFNP/compress/VAEformer/models/latentFNP.py", line 176, in train
+    for step, batch_data in enumerate(valid_data_loader):
+  File "/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 628, in __next__
+    data = self._next_data()
+  File "/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 1333, in _next_data
+    return self._process_data(data)
+  File "/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 1359, in _process_data
+    data.reraise()
+  File "/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/_utils.py", line 543, in reraise
+    raise exception
+RuntimeError: Caught RuntimeError in pin memory thread for device 0.
+Original Traceback (most recent call last):
+  File "/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/utils/data/_utils/pin_memory.py", line 32, in do_one_step
+    data = pin_memory(data, device)
+  File "/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/utils/data/_utils/pin_memory.py", line 68, in pin_memory
+    return type(data)([pin_memory(sample, device) for sample in data])  # type: ignore[call-arg]
+  File "/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/utils/data/_utils/pin_memory.py", line 68, in <listcomp>
+    return type(data)([pin_memory(sample, device) for sample in data])  # type: ignore[call-arg]
+  File "/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/utils/data/_utils/pin_memory.py", line 68, in pin_memory
+    return type(data)([pin_memory(sample, device) for sample in data])  # type: ignore[call-arg]
+  File "/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/utils/data/_utils/pin_memory.py", line 68, in <listcomp>
+    return type(data)([pin_memory(sample, device) for sample in data])  # type: ignore[call-arg]
+  File "/mnt/petrelfs/sunjingan/anaconda3/envs/FNP/lib/python3.8/site-packages/torch/utils/data/_utils/pin_memory.py", line 53, in pin_memory
+    return data.pin_memory(device)
+RuntimeError: CUDA error: OS call failed or operation not supported on this OS
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+
+srun: error: SH-IDC1-10-140-24-105: task 0: Exited with exit code 1

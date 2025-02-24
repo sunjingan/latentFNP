@@ -11,25 +11,30 @@ from utils.metrics import WRMSE
 from utils.builder import get_optimizer, get_lr_scheduler
 import modules
 from utils.distributions import DiagonalGaussianDistribution
+from models.vaeformer import VAEformer
+from models.FNP import FNP_model
+
+from torch.cuda.amp import autocast, GradScaler
+from torch.utils.checkpoint import checkpoint
+
 
 class latentFNP_model(nn.Module):
     def __init__(
         self,
-        frozen_encoder=False
+        model_params
     ):
         super().__init__()
 
+        VAEparams = model_params.get('VAEparams', {})
+        self.vaeformer = VAEformer(model_version=69) #whether frozen encoder. If frozen, load pretrained model
+        FNPparams = model_params.get('FNPparams', {})
+        
+        self.FNP = FNP_model(**FNPparams)
 
-    self.vaeformer = VAEformer() #whether frozen encoder. If frozen, load pretrained model
-    self.FNP = FNP_model()
+        #self.get_sigma = Mlp()
 
-    if frozen_encoder:
-        self.vaeformer.ga.load_state_dict(torch.load("encoder.pth"))
-        self.vaeformer.gs.load_state_dict(torch.load("decoder.pth"))
-        for param in self.vaeformer.g_a.parameters():
-                param.requires_grad = False
     
-    self.sample_posterior = True
+        self.sample_posterior = False
     
     def get_latent(self,bkg):
         moments = self.vaeformer.g_a(bkg)
@@ -49,10 +54,15 @@ class latentFNP_model(nn.Module):
         
         return x_hat
 
-    def forward(self,obs_coor,obs_value,bkg):
+    def forward(self,obs_coor,obs_value,bkg,logger):
         bkg_latent = self.get_latent(bkg)
-        ana_latent = self.FNP(obs_coor,obs_value, bkg_latent)
+        bkg_latent = rearrange(bkg_latent, 'b c h w -> b h w c')
+        #print(obs_coor.shape,obs_value.shape,bkg_latent.shape)
+        ana_latent = self.FNP(obs_coor,obs_value, bkg_latent,logger)
+        ana_latent = modules.channels_to_2nd_dim(ana_latent.squeeze(0))
+        #print('ana_latent',ana_latent.shape)
         ana_mean = self.decode_latent(ana_latent)
+        #print(bkg_latent.shape,ana_latent.shape,ana_mean.shape)
 
         return ana_mean
 
@@ -61,16 +71,32 @@ class latentFNP(object):
     def __init__(self, **model_params) -> None:
         super().__init__()
 
-        params = model_params.get('params', {})
+        print('model_params:',model_params)
         criterion = model_params.get('criterion', 'CNPFLoss') #UnifyMAE
         self.optimizer_params = model_params.get('optimizer', {})
         self.scheduler_params = model_params.get('lr_scheduler', {})
 
-        self.kernel = latentFNP_model(**params)
-        self.best_loss = 9999
+        self.kernel = latentFNP_model(model_params)
+
+        encoder_path = '/mnt/petrelfs/sunjingan/HighResFNP/compress/VAEformer/models/best_encoder.pth'
+        decoder_path = '/mnt/petrelfs/sunjingan/HighResFNP/compress/VAEformer/models/best_decoder.pth'
+    
+        self.kernel.vaeformer.g_a.load_state_dict(torch.load(encoder_path))
+        self.kernel.vaeformer.g_s.load_state_dict(torch.load(decoder_path))
+        
+        frozen_encoder = True
+        if frozen_encoder:
+            for param in self.kernel.vaeformer.g_a.parameters():
+                param.requires_grad = False
+            for param in self.kernel.vaeformer.g_s.parameters():
+                param.requires_grad = False
+            
+        
+        self.best_loss = 9999999
         self.criterion = self.get_criterion(criterion)
         self.criterion_mae = nn.L1Loss()
         self.criterion_mse = nn.MSELoss()
+        self.scaler = GradScaler() 
 
         if utils.is_dist_avail_and_initialized():
             self.device = torch.device('cuda' if torch.cuda.is_available() else "cpu")
@@ -94,16 +120,13 @@ class latentFNP(object):
     
     def train(self, train_data_loader, valid_data_loader, logger, args):
         
+
         train_step = len(train_data_loader)
         valid_step = len(valid_data_loader)
         self.optimizer = get_optimizer(self.kernel, self.optimizer_params)
         self.scheduler = get_lr_scheduler(self.optimizer, self.scheduler_params, total_steps=train_step*args.max_epoch)
 
         for epoch in range(args.max_epoch):
-            begin_time = time.time()
-            self.kernel.train()
-            
-            for epoch in range(args.max_epoch):
             begin_time = time.time()
             self.kernel.train()
             
@@ -114,6 +137,7 @@ class latentFNP(object):
                 truth = batch_data[0][-1].to(self.device, non_blocking=True)
                 predict_data = args.forecast_model.run(None, {'input':inp_data})[0][:,:truth.shape[1]]
                 #predict_data is the bkg field. shape is 721*1440
+                predict_data = torch.from_numpy(predict_data).to(self.device)
 
                 #x_context y_context is the simulated observations. One can adjust the observation resolution
                 truth_down = F.interpolate(truth, size=(128,256), mode='bilinear')
@@ -121,23 +145,29 @@ class latentFNP(object):
                 y_context = rearrange(truth_down, 'b c h w -> b h w c')
                 
                 #the analysis truth
-                y_target = rearrange(truth, 'b c h w -> b h w c')
+                y_target = truth #rearrange(truth, 'b c h w -> b h w c')
                 
                 self.optimizer.zero_grad()
-                y_pred = self.kernel(x_context,y_context,predict_data,logger)
+                with autocast():
+                    y_pred = self.kernel(x_context,y_context,predict_data,logger)
 
-                analysis = modules.channels_to_2nd_dim(y_pred)
-                #reformulate the inp data
-                #print("ana inp:",inp_data.shape,analysis.shape)
-                inp_data = np.concatenate([inp_data[:,truth.shape[1]:], analysis.detach().cpu().numpy()], axis=1)
+                    analysis = y_pred #modules.channels_to_2nd_dim(y_pred)
+                    #reformulate the inp data
+                    #print("ana inp:",inp_data.shape,analysis.shape)
+                    inp_data = np.concatenate([inp_data[:,truth.shape[1]:], analysis.detach().cpu().numpy()], axis=1)
                 
-                if isinstance(self.criterion, torch.nn.Module):
-                    self.criterion.train()
-                loss = self.criterion(y_pred, y_target)
-                loss.backward()
+                    if isinstance(self.criterion, torch.nn.Module):
+                        self.criterion.train()
+                    loss = self.criterion_mse(analysis, y_target)
+                self.scaler.scale(loss).backward()
+                self.scaler.unscale_(self.optimizer)
                 clip_grad_norm_(self.kernel.parameters(), max_norm=1)
-                self.optimizer.step()
+                #self.optimizer.step()
+                self.scaler.step(self.optimizer)
+                self.scaler.update()
                 self.scheduler.step()
+                
+                
                 
                 if ((step + 1) % 100 == 0) | (step+1 == train_step):
                     logger.info(f'Train epoch:[{epoch+1}/{args.max_epoch}], step:[{step+1}/{train_step}], lr:[{self.scheduler.get_last_lr()[0]}], loss:[{loss.item()}]')
@@ -148,34 +178,31 @@ class latentFNP(object):
 
                 for step, batch_data in enumerate(valid_data_loader):
 
-                    
                     if step == 0:
                         inp_data = torch.cat([batch_data[0][0], batch_data[0][1]], dim=1).numpy()
                     truth = batch_data[0][-1].to(self.device, non_blocking=True)
                     #truth shape: 721*1440
                     predict_data = args.forecast_model.run(None, {'input':inp_data})[0][:,:truth.shape[1]]
+                    predict_data = torch.from_numpy(predict_data).to(self.device)
                     
                     truth_down = F.interpolate(truth, size=(128,256), mode='bilinear')
                     x_context = rearrange(torch.rand(truth_down.shape, device=self.device) >= args.ratio, 'b c h w -> b h w c')
                     y_context = rearrange(truth_down, 'b c h w -> b h w c')
 
-                    y_target = rearrange(truth, 'b c h w -> b h w c')
+                    y_target = truth #rearrange(truth, 'b c h w -> b h w c')
                     #x_context y_context is the simulated observations.
-                    input_list = [x_context, y_context, xb_context, yb_context, x_target]
                     
-
-                    y_pred = self.kernel(input_list,logger)
+                    y_pred = self.kernel(x_context,y_context,predict_data,logger)
                     
-                    analysis = modules.channels_to_2nd_dim(y_pred[-1])
-                    y_pred = y_pred[0:-1]
-                    #reformulate the inp data
+                    analysis = y_pred
                     inp_data = np.concatenate([inp_data[:,truth.shape[1]:], analysis.detach().cpu().numpy()], axis=1)
                     
 
                     if isinstance(self.criterion, torch.nn.Module):
                         self.criterion.eval()
-                    loss = self.criterion(y_pred, y_target).item()
+                    loss = self.criterion_mse(y_pred, y_target).item()
                     total_loss += loss
+                    
 
                     if ((step + 1) % 100 == 0) | (step+1 == valid_step):
                         logger.info(f'Valid epoch:[{epoch+1}/{args.max_epoch}], step:[{step+1}/{valid_step}], loss:[{loss}]')

@@ -11,6 +11,8 @@ from utils.metrics import WRMSE
 from utils.builder import get_optimizer, get_lr_scheduler
 import modules
 
+from torch.utils.checkpoint import checkpoint
+
 
 class obsEncoder(nn.Module):
 
@@ -108,6 +110,9 @@ class obsEncoder(nn.Module):
         for i in range(len(self.n_channels)):
             R_induced = self.cntxt_to_induced(mask_cntxt[...,sum(self.n_channels[:i]):sum(self.n_channels[:i+1])], 
                                               X[...,sum(self.n_channels[:i]):sum(self.n_channels[:i+1])], i)
+            #print(R_induced)
+            #print(R_induced.shape)
+            R_induced = self.induced_to_induced[i](R_induced)
             R_induced = self.induced_to_induced[i](R_induced)
             R_induced_all.append(R_induced)
         # the last for all channels
@@ -188,6 +193,7 @@ class bkgEncoder(nn.Module):
         X_cntxt = X
         signal = self.conv[index](X_cntxt)
         #mask_cntxt all true
+        mask_cntxt = torch.ones_like(X_cntxt).to(X.device)
         density = self.conv[index](mask_cntxt.expand_as(X))
 
         # normalize
@@ -205,11 +211,14 @@ class bkgEncoder(nn.Module):
         return out
 
     def encode_globally(self, X):
-
+        #print('X.shape:',X.shape)
         # size = [batch_size, *grid_shape, r_dim] for each single channel
         R_induced_all = []
         for i in range(len(self.n_channels)):
+            #print('Slice:',X[...,sum(self.n_channels[:i]):sum(self.n_channels[:i+1])].shape)
             R_induced = self.cntxt_to_induced(X[...,sum(self.n_channels[:i]):sum(self.n_channels[:i+1])], i)
+            #print(R_induced)
+            #print('R_induced.shape:',R_induced.shape)
             R_induced = self.induced_to_induced[i](R_induced)
             R_induced_all.append(R_induced)
         # the last for all channels
@@ -231,7 +240,7 @@ class FNP_model(nn.Module):
         super().__init__()
 
         self.r_dim = r_dim
-        
+        print("r_dim:",r_dim)
         self.y_dim = sum(n_channels)
         self.n_channels = n_channels
         self.use_dam = use_dam
@@ -279,7 +288,7 @@ class FNP_model(nn.Module):
         modules.weights_init(self)
 
     def forward(self, obs_coor,obs_value, bkg_latent,logger):
-        Xo_cotxt, Yo_cntxt, Yb_cntxt = obs_coor,obs_value, bkg_latent
+        Xo_cntxt, Yo_cntxt, Yb_cntxt = obs_coor,obs_value, bkg_latent
         #Xo_cntxt, Yo_cntxt, Xb_cntxt, Yb_cntxt, X_trgt = input_list[0], input_list[1], input_list[2], input_list[3], input_list[4]
         
         # {R^u}_u
@@ -305,12 +314,12 @@ class FNP_model(nn.Module):
             R_fusion = [rearrange(self.smooth[i](R_similar[i]), 'b c h w -> b h w c') for i in range(len(self.n_channels)+1)]
 
         # size = [n_z_samples, batch_size, *n_trgt, r_dim]
-        R_trgt = [self.trgt_dependent_representation(Xo_cntxt, Xb_cntxt, z_samples, R_fusion[i]) for i in range(len(self.n_channels)+1)]
+        R_trgt = [self.trgt_dependent_representation(Xo_cntxt, z_samples, R_fusion[i]) for i in range(len(self.n_channels)+1)]
     
         # p(y|cntxt,trgt)
         # batch shape=[n_z_samples, batch_size, *n_trgt] ; event shape=[y_dim]
         #logger.info("time before decoder")
-        p_yCc = self.decode(X_trgt, R_trgt, Yb_cntxt)
+        p_yCc = self.decode(R_trgt, Yb_cntxt)
         #logger.info("time after decoder")
 
         return p_yCc
@@ -324,7 +333,7 @@ class FNP_model(nn.Module):
 
         return R
     
-    def trgt_dependent_representation(self, _, __, ___, R_induced):
+    def trgt_dependent_representation(self, __, ___, R_induced):
 
         # n_z_samples=1. size = [1, batch_size, n_trgt, r_dim]
         return R_induced.unsqueeze(0)
@@ -337,14 +346,15 @@ class FNP_model(nn.Module):
             R_trgt_single = torch.cat([R_trgt[i], R_trgt[-1]], dim=-1)
 
             # size = [n_z_samples, batch_size, *n_trgt, y_dim]
-            p_y_loc = self.decoder[i](_, R_trgt_single)
-            print("p_y_loc:",p_y_loc.shape)
+            dummpy = 0
+            p_y_loc = self.decoder[i](dummpy,R_trgt_single)
+            #print("p_y_loc:",p_y_loc.shape)
 
             locs.append(p_y_loc)
 
         locs = torch.cat(locs, dim=-1) + Yb_cntxt
         
-        print("locs.shape:",locs.shape)
+        #print("locs.shape:",locs.shape)
         # batch shape=[n_z_samples, batch_size, *n_trgt] ; event shape=[y_dim]
         
 
